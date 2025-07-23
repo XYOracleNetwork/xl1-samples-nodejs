@@ -49,9 +49,9 @@
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
-    "@xylabs/eslint-config-flat": "^7.0.0",
-    "@xylabs/ts-scripts-yarn3": "^7.0.0",
-    "@xylabs/tsconfig": "^7.0.0",
+    "@xylabs/eslint-config-flat": "^7.0.1",
+    "@xylabs/ts-scripts-yarn3": "^7.0.1",
+    "@xylabs/tsconfig": "^7.0.1",
     "@xyo-network/boundwitness-model": "^4.1.7",
     "@xyo-network/payload-model": "^4.1.7",
     "@xyo-network/xl1-cli": "^1.7.11",
