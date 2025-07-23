@@ -37,7 +37,7 @@ try {
 
   // Confirm the transaction is added to the chain
   const onConfirm = (txBWHash: string) => {
-    console.log('See your transaction on our Blockchain Explorer:', `https://beta.explore.xyo.network/xl1/sequence/transaction/${txBWHash}`)
+    console.log('See your transaction on our Blockchain Explorer:', `https://explore.xyo.network/xl1/local/transaction/${txBWHash}`)
   }
   await connection.confirm(txBW, onConfirm)
 } catch (ex) {
