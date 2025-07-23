@@ -1,5 +1,4 @@
 import { assertEx } from '@xylabs/assert'
-import { isError } from '@xylabs/typeof'
 import type { Signed } from '@xyo-network/boundwitness-model'
 import type { Payload } from '@xyo-network/payload-model'
 import type { AllowedBlockPayload, TransactionBoundWitness } from '@xyo-network/xl1-model'
@@ -11,7 +10,6 @@ export const submitTransaction = async (
   provider: XyoConnectionProvider,
 ): Promise<Signed<TransactionBoundWitness>> => {
   console.log('\n', '🚀 Sending transaction with payloads:', onChainPayloads, offChainPayloads, '\n')
-  console.log('👤 Using Account:', provider.signer?.address(), '\n')
 
   const [txBW] = await provider.submitTransaction?.(
     onChainPayloads,
