@@ -2909,6 +2909,7 @@ __metadata:
     "@xylabs/eslint-config-flat": "npm:^7.0.0"
     "@xylabs/ts-scripts-yarn3": "npm:^7.0.0"
     "@xylabs/tsconfig": "npm:^7.0.0"
+    "@xylabs/typeof": "npm:^4.13.23"
     "@xyo-network/boundwitness-model": "npm:^4.1.7"
     "@xyo-network/payload-model": "npm:^4.1.7"
     "@xyo-network/wallet": "npm:^4.1.7"
