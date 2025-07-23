@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/package.json",
-  "name": "@xyo-network/xl1-protocol-samples-nodejs",
+  "name": "@xyo-network/xl1-samples-nodejs",
   "version": "1.0.0",
   "description": "XYO Layer One Protocol Sample Code",
   "homepage": "https://xyo.network",
@@ -19,19 +19,24 @@
     ".": {
       "node": {
         "types": "./dist/node/index.d.ts",
+        "source": "./src/index.ts",
         "default": "./dist/node/index.mjs"
-      },
-      "neutral": {
-        "types": "./dist/neutral/index.d.ts",
-        "default": "./dist/neutral/index.mjs"
       }
     },
     "./package.json": "./package.json"
   },
-  "module": "./dist/neutral/index.mjs",
-  "types": "./dist/neutral/index.d.ts",
+  "module": "./dist/node/index.mjs",
+  "source": "./src/index.ts",
+  "types": "./dist/node/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "run-sample": "tsx ./src/index.ts"
+    "build": "xy compile && xy lint",
+    "compile": "xy compile",
+    "lint": "xy lint",
+    "start": "tsx ./src/index.ts"
   },
   "dependencies": {
     "@xylabs/assert": "^4.13.23",
@@ -41,13 +46,18 @@
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
+    "@xylabs/eslint-config-flat": "^7.0.0",
     "@xylabs/ts-scripts-yarn3": "^7.0.0",
     "@xylabs/tsconfig": "^7.0.0",
     "@xyo-network/boundwitness-model": "^4.1.7",
     "@xyo-network/payload-model": "^4.1.7",
+    "@xyo-network/xl1-cli": "^1.7.11",
     "@xyo-network/xl1-model": "^1.3.8",
-    "@xyo-network/xl1-protocol": "^1.7.12",
-    "tsx": "^4.20.3"
+    "@xyo-network/xl1-protocol": "^1.7.13",
+    "eslint": "^9.31.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
   },
   "packageManager": "yarn@4.9.2",
   "engines": {

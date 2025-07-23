@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node Hello World Sample",
+      "program": "${workspaceFolder}/dist/node/index.mjs",
+      "args": ["producer"],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.mjs"
+      ],
+      "runtimeArgs": [
+        "--max-old-space-size=8192"
+      ],
+      "envFile": "${workspaceFolder}/.env",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "!**/node_modules/**",
+      ],
+      "pauseForSourceMap": true,
+      "cwd": "${workspaceFolder}",
+    },
+  ]
+}

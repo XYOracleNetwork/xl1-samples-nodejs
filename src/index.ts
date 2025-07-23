@@ -1,7 +1,7 @@
 import { assertEx } from '@xylabs/assert'
 import { HDWallet } from '@xyo-network/wallet'
 import type { HashPayload } from '@xyo-network/xl1-model'
-import { RpcXyoProvider } from '@xyo-network/xl1-rpc'
+import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
 import { submitTransaction } from './submitTransaction.ts'
@@ -21,13 +21,13 @@ const account = await HDWallet.fromPhrase(walletMnemonic)
 
 // Load the RPC transport using the URL from the environment variable
 const endpoint = assertEx(process.env.XYO_CHAIN_RPC_URL, () => 'Missing environment variable: XYO_CHAIN_RPC_URL')
-const provider = new RpcXyoProvider({ account, endpoint })
+const connection = new RpcXyoConnection({ account, endpoint })
 
 // Send the transaction with the payload to the network via the provider
-const txBW = await submitTransaction([payload], [], provider)
+const txBW = await submitTransaction([payload], [], connection)
 
 // Confirm the transaction is added to the chain
 const onConfirm = (txBWHash: string) => {
   console.log('See your transaction on our Blockchain Explorer:', `https://beta.explore.xyo.network/xl1/sequence/transaction/${txBWHash}`)
 }
-await provider.confirm(txBW, onConfirm)
+await connection.confirm(txBW, onConfirm)

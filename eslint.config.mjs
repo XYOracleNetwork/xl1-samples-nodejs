@@ -1,5 +1,4 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from 'eslint-plugin-storybook'
 
 import {
   typescriptConfig,
@@ -11,7 +10,7 @@ import {
 } from '@xylabs/eslint-config-flat'
 
 export default [
-  { ignores: ['.yarn', '**/dist', '**/build', '**/public', '**/storybook-static', '**/.storybook', 'scripts', '**/node_modules', '.dependency-cruiser.mjs'] },
+  { ignores: ['.yarn', '**/dist', '**/build', 'scripts', 'node_modules'] },
   unicornConfig,
   workspacesConfig,
   rulesConfig,
@@ -21,7 +20,7 @@ export default [
     ...importConfig,
     rules: {
       ...importConfig.rules,
-      'import-x/no-internal-modules': ['warn', { allow: ['vitest/config', 'ethers/utils', '*/index.ts'] }],
+      'import-x/no-internal-modules': ['warn', { allow: ['*/index.ts'] }],
       'import-x/no-unresolved': ['off'],
       'import-x/no-relative-packages': ['error'],
       'import-x/no-self-import': ['error'],
@@ -39,5 +38,4 @@ export default [
       ],
     },
   },
-  ...storybook.configs['flat/recommended'],
 ]
