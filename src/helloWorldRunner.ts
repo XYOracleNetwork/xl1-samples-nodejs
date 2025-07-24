@@ -1,8 +1,10 @@
+/* eslint-disable max-statements */
 import { type ChildProcess, spawn } from 'node:child_process'
 
 import { delay } from '@xylabs/delay'
 import { HDWallet } from '@xyo-network/wallet'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
+import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
 
 import { helloWorld } from './helloWorld.ts'
 
@@ -50,7 +52,7 @@ async function startXl1(): Promise<string> {
     const account = await wallet.derivePath(ADDRESS_INDEX.XYO)
 
     console.log('Generated mnemonic:', mnemonic)
-    console.log('Wallet address:', account.address)
+    console.log('Producer Wallet address:', account.address)
 
     // Spawn the XL1 process using yarn
     xl1Process = spawn('yarn', ['xl1', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
@@ -83,7 +85,33 @@ async function startXl1(): Promise<string> {
       throw error
     })
 
-    await delay(3000)
+    const connection = new RpcXyoConnection({ endpoint: 'http://localhost:8080/rpc' })
+
+    console.log('\n Waiting for genesis block creation')
+    let ready = false
+    let attempts = 0
+    const maxAttempts = 10
+    while (!ready && attempts < maxAttempts) {
+      try {
+        // Check if the connection is ready
+        const [block] = await connection.viewer?.currentBlock() ?? []
+        // ensure that all initial blocks are created
+        if (block?.block === 1) {
+          ready = true
+        }
+      } catch {
+        console.error()
+      }
+      if (!ready) {
+        if (attempts >= maxAttempts) {
+          throw new Error('XL1 did not become ready within the expected time frame.')
+        }
+        attempts++
+        console.log(`XL1 not ready yet, retrying in 1 second... (${attempts}/10)`)
+        await delay(1000)
+      }
+    }
+
     return mnemonic
   } catch (error) {
     console.error('Error starting XL1:', error)
