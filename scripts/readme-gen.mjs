@@ -5,7 +5,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { yarnWorkspaces } from '@xylabs/ts-scripts-yarn3'
+import { yarnWorkspaces } from './yarnWorkspaces.mjs'
 import { generateTypeDoc } from './generate-typedoc.mjs'
 // import { getPackageEntryPoints } from './get-package-entrypoints.mjs'
 

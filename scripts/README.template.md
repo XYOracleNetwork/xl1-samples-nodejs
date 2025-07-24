@@ -12,8 +12,6 @@
 
 {{body}}
 
-{{typedoc}}
-
 ## Maintainers
 
 -   [Arie Trouw](https://github.com/arietrouw) ([arietrouw.com](https://arietrouw.com))
