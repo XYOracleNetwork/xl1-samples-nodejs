@@ -2,7 +2,7 @@ import { assertEx } from '@xylabs/assert'
 import { isError } from '@xylabs/typeof'
 import type { HashPayload } from '@xyo-network/xl1-model'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
-import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
+import { confirmTransaction, RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
 import { submitTransaction } from './submitTransaction.ts'
@@ -36,16 +36,16 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
 
     // Send the transaction with the payload to the network via the provider
     const txBW = await submitTransaction([payload], [], connection)
-
-    // Confirm the transaction is added to the chain
-    const onConfirm = () => {
-      console.log('To explore your local blockchain:\n')
-      console.log('1. Install the XYO Layer One Wallet from https://chromewebstore.google.com/detail/xl1-wallet/fblbagcjeigmhakkfgjpdlcapcgmcfbm')
-      console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
-    }
-    await connection.confirm(txBW, onConfirm)
+    confirmTransaction(connection, txBW, logSuccess)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
     process.exitCode = 1
   }
+}
+
+// Confirm the transaction is added to the chain
+const logSuccess = () => {
+  console.log('To explore your local blockchain:\n')
+  console.log('1. Install the XYO Layer One Wallet from https://chromewebstore.google.com/detail/xl1-wallet/fblbagcjeigmhakkfgjpdlcapcgmcfbm')
+  console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
 }
