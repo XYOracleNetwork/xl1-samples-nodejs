@@ -1,4 +1,4 @@
-# @xyo-network/xl1-protocol-samples-nodejs
+# @xyo-network/xl1-samples-nodejs
 
 [![logo][]](https://xyo.network)
 
@@ -10,11 +10,15 @@
 
 XYO Layer One Protocol Sample Code
 
+## Getting Started
 
+1. Install the dependencies: `yarn install`
+1. Run `yarn runner`
+1. To view your transaction, follow instructions at the end of the sample output
 
 ## Reference
 
-**@xyo-network/xl1-protocol-samples-nodejs**
+**@xyo-network/xl1-samples-nodejs**
 
 ***
 
@@ -37,14 +41,14 @@ XYO Layer One Protocol Sample Code
 
 [logo]: https://cdn.xy.company/img/brand/XYO_full_colored.png
 
-[npm-badge]: https://img.shields.io/npm/v/@xyo-network/xl1-protocol-samples-nodejs.svg
-[npm-link]: https://www.npmjs.com/package/@xyo-network/xl1-protocol-samples-nodejs
+[npm-badge]: https://img.shields.io/npm/v/@xyo-network/xl1-samples-nodejs.svg
+[npm-link]: https://www.npmjs.com/package/@xyo-network/xl1-samples-nodejs
 
-[npm-downloads-badge]: https://img.shields.io/npm/dw/@xyo-network/xl1-protocol-samples-nodejs
-[npm-license-badge]: https://img.shields.io/npm/l/@xyo-network/xl1-protocol-samples-nodejs
+[npm-downloads-badge]: https://img.shields.io/npm/dw/@xyo-network/xl1-samples-nodejs
+[npm-license-badge]: https://img.shields.io/npm/l/@xyo-network/xl1-samples-nodejs
 
-[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/@xyo-network/xl1-protocol-samples-nodejs/badge
-[jsdelivr-link]: https://www.jsdelivr.com/package/npm/@xyo-network/xl1-protocol-samples-nodejs
+[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/@xyo-network/xl1-samples-nodejs/badge
+[jsdelivr-link]: https://www.jsdelivr.com/package/npm/@xyo-network/xl1-samples-nodejs
 
-[socket-badge]: https://socket.dev/api/badge/npm/package/@xyo-network/xl1-protocol-samples-nodejs
-[socket-link]: https://socket.dev/npm/package/@xyo-network/xl1-protocol-samples-nodejs
+[socket-badge]: https://socket.dev/api/badge/npm/package/@xyo-network/xl1-samples-nodejs
+[socket-link]: https://socket.dev/npm/package/@xyo-network/xl1-samples-nodejs

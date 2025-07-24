@@ -19,8 +19,9 @@
     "build": "xy compile && xy lint",
     "compile": "xy compile",
     "lint": "xy lint",
-    "start": "tsx ./src/index.ts",
-    "runner": "tsx ./src/helloWorldRunner.ts"
+    "readme:gen": "node scripts/readme-gen.mjs",
+    "runner": "tsx ./src/helloWorldRunner.ts",
+    "start": "tsx ./src/index.ts"
   },
   "dependencies": {
     "@xylabs/assert": "^4.13.23",
@@ -28,9 +29,9 @@
     "@xylabs/typeof": "^4.13.23",
     "@xyo-network/wallet": "^4.1.7",
     "@xyo-network/xl1-model": "^1.3.8",
-    "@xyo-network/xl1-protocol": "^1.7.19",
-    "@xyo-network/xl1-protocol-sdk": "^1.7.14",
-    "@xyo-network/xl1-rpc": "^1.7.14",
+    "@xyo-network/xl1-protocol": "^1.7.20",
+    "@xyo-network/xl1-protocol-sdk": "^1.7.15",
+    "@xyo-network/xl1-rpc": "^1.7.15",
     "dotenv": "^17.2.0"
   },
   "devDependencies": {
@@ -40,10 +41,12 @@
     "@xylabs/tsconfig": "^7.0.1",
     "@xyo-network/boundwitness-model": "^4.1.7",
     "@xyo-network/payload-model": "^4.1.7",
-    "@xyo-network/xl1-cli": "^1.7.14",
+    "@xyo-network/xl1-cli": "^1.7.15",
     "eslint": "^9.31.0",
     "eslint-import-resolver-typescript": "^4.4.4",
     "tsx": "^4.20.3",
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "^4.7.1",
     "typescript": "^5.8.3"
   },
   "packageManager": "yarn@4.9.2",

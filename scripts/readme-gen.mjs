@@ -18,7 +18,7 @@ function fillTemplate(template, data) {
 }
 
 async function tryLoadReadmeBody(location) {
-  const readmeBodyPath = path.join(location, 'README_BODY.md')
+  const readmeBodyPath = path.join(location, 'README.body.md')
   try {
     return await readFile(readmeBodyPath, 'utf8')
   } catch {
@@ -36,9 +36,8 @@ async function main() {
         continue 
       }
       const pkgJsonPath = path.join(location, 'package.json')
-      const readmeBodyPath = path.join(location, 'README_BODY.md')
       const pkg = JSON.parse(await readFile(pkgJsonPath, 'utf8'))
-      const body = await tryLoadReadmeBody(readmeBodyPath)
+      const body = await tryLoadReadmeBody(location)
       const typedoc = await generateTypeDoc(location, ['src/index*.ts'])
       const readmeContent = fillTemplate(template, { ...pkg, body, typedoc })
       await writeFile(path.join(location, 'README.md'), readmeContent)
