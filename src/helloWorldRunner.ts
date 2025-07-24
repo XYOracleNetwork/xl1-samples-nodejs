@@ -47,6 +47,7 @@ async function startXl1(): Promise<string> {
   })
 
   try {
+    // log out the mnemonic and wallet address using same steps as producer
     const wallet = await generateXyoBaseWalletFromPhrase(mnemonic)
     const account = await wallet.derivePath(ADDRESS_INDEX.XYO)
 
