@@ -5,7 +5,7 @@ import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1
 import { confirmTransaction, RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
-import { submitTransaction } from './submitTransaction.ts'
+import { submitTransaction } from './submitTransaction.js'
 
 // Load environment variables from .env file
 config({ quiet: true })

@@ -16,9 +16,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "xy compile && xy lint",
-    "compile": "xy compile",
-    "lint": "xy lint",
+    "build": "tsc && eslint",
+    "compile": "tsc",
+    "lint": "eslint",
     "readme:gen": "node scripts/readme-gen.mjs",
     "runner": "tsx ./src/helloWorldRunner.ts",
     "start": "tsx ./src/index.ts"
@@ -37,8 +37,6 @@
   "devDependencies": {
     "@types/node": "^24.1.0",
     "@xylabs/eslint-config-flat": "^7.0.1",
-    "@xylabs/ts-scripts-yarn3": "^7.0.1",
-    "@xylabs/tsconfig": "^7.0.1",
     "@xyo-network/boundwitness-model": "^4.1.7",
     "@xyo-network/payload-model": "^4.1.7",
     "@xyo-network/xl1-cli": "^1.7.17",

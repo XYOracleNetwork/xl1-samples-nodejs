@@ -16,14 +16,6 @@ XYO Layer One Protocol Sample Code
 1. Run `yarn runner`
 1. To view your transaction, follow instructions at the end of the sample output
 
-## Reference
-
-**@xyo-network/xl1-samples-nodejs**
-
-***
-
-
-
 ## Maintainers
 
 -   [Arie Trouw](https://github.com/arietrouw) ([arietrouw.com](https://arietrouw.com))
