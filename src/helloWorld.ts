@@ -10,6 +10,8 @@ import { submitTransaction } from './submitTransaction.js'
 // Load environment variables from .env file
 config({ quiet: true })
 
+const logger = console
+
 export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc'): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
@@ -33,7 +35,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     const txBW = await submitTransaction([payload], [], connection)
 
     // Confirm the transaction was added to the chain
-    const confirmed = await confirmSubmittedTransaction(connection, txBW)
+    const confirmed = await confirmSubmittedTransaction(connection, txBW, { logger })
     logSuccess(confirmed)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
