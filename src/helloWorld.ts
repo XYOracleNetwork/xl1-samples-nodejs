@@ -32,9 +32,10 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
 
     console.log('Using endpoint:', rpcEndpoint)
 
+    // Create a new RPC connection to the XL1 API Node
     const connection = new RpcXyoConnection({ account, endpoint: rpcEndpoint })
 
-    // Send the transaction with the payload to the network via the provider
+    // Send the transaction with the payload to the network via the Provider
     const txBW = await submitTransaction([payload], [], connection)
     confirmTransaction(connection, txBW, logSuccess)
   } catch (ex) {
