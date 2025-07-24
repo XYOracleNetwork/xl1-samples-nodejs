@@ -2769,9 +2769,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xyo-network/xl1-cli@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-cli@npm:1.7.16"
+"@xyo-network/xl1-cli@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-cli@npm:1.7.17"
   dependencies:
     lmdb: "npm:^3.4.1"
   peerDependencies:
@@ -2781,7 +2781,7 @@ __metadata:
       optional: true
   bin:
     xl1: ./scripts/xl1.mjs
-  checksum: 10/021bc540ee20fe642fe50ba81a988d92cd3ca4f4969fb26ed9e496fe225a1f04a282910321fa65ac210013f29b97761f65472676f395de103b8613feda6487d2
+  checksum: 10/ad374c0c9f9d098bbab1fed3d1d46cf191ea96fe10c53d41e6579c4bf8b23e3660db16750cd150dc54da2126daaa5e14a06c2c42bec94f3463c10703247b7449
   languageName: node
   linkType: hard
 
@@ -2810,9 +2810,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xyo-network/xl1-protocol-sdk@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-protocol-sdk@npm:1.7.16"
+"@xyo-network/xl1-protocol-sdk@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-protocol-sdk@npm:1.7.17"
   dependencies:
     "@xylabs/array": "npm:^4.13.23"
     "@xylabs/assert": "npm:^4.13.23"
@@ -2831,7 +2831,7 @@ __metadata:
     "@xyo-network/wallet-model": "npm:^4.1.7"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
     zod: "npm:^3.25.76"
-  checksum: 10/4c638ccff5410e64d8f124cef8983b45f3040a53825973b3777fc07ea3839c97a1a4a5230e8d7eea9b38f15abe206aa8429f8d42b11763d31454d9c0a8a07903
+  checksum: 10/1a2abe3e49332475192cb1a4218e0bdb5c1da2e087059f133b651f0812d1f3cac49790fc49fa3c29c7f83daaee5ee857ed4b07ea8b32c1d55b9fdfb6144b79a2
   languageName: node
   linkType: hard
 
@@ -2856,9 +2856,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xyo-network/xl1-rpc@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-rpc@npm:1.7.16"
+"@xyo-network/xl1-rpc@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-rpc@npm:1.7.17"
   dependencies:
     "@metamask/json-rpc-engine": "npm:^10.0.3"
     "@metamask/utils": "npm:^11.4.2"
@@ -2879,12 +2879,12 @@ __metadata:
     "@xyo-network/payload-model": "npm:^4.1.7"
     "@xyo-network/payload-wrapper": "npm:^4.1.7"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
-    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.16"
-    "@xyo-network/xl1-wrappers": "npm:^1.7.16"
+    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.17"
+    "@xyo-network/xl1-wrappers": "npm:^1.7.17"
     axios: "npm:^1.11.0"
     uuid: "npm:^11.1.0"
     zod: "npm:^3.25.76"
-  checksum: 10/608df69841fb5a46d33e8a1601c3d6722dc5b72ceec055c55a82191b6160d3c1248caad927b3074d37d713f3d966bddf795c0e97709cb1609235f74c5acf1da2
+  checksum: 10/327d00c51e34b041e4fdab3c9f6f93fe9040cf7097ef1386bb4bc73e2c478abf72a5844c42df991eec28f144ec55786f2a70f4c750cb7eacc3a4ff29351428ef
   languageName: node
   linkType: hard
 
@@ -2902,11 +2902,11 @@ __metadata:
     "@xyo-network/boundwitness-model": "npm:^4.1.7"
     "@xyo-network/payload-model": "npm:^4.1.7"
     "@xyo-network/wallet": "npm:^4.1.7"
-    "@xyo-network/xl1-cli": "npm:^1.7.16"
+    "@xyo-network/xl1-cli": "npm:^1.7.17"
     "@xyo-network/xl1-model": "npm:^1.3.8"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
-    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.16"
-    "@xyo-network/xl1-rpc": "npm:^1.7.16"
+    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.17"
+    "@xyo-network/xl1-rpc": "npm:^1.7.17"
     dotenv: "npm:^17.2.0"
     eslint: "npm:^9.31.0"
     eslint-import-resolver-typescript: "npm:^4.4.4"
@@ -2917,9 +2917,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@xyo-network/xl1-schema@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-schema@npm:1.7.16"
+"@xyo-network/xl1-schema@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-schema@npm:1.7.17"
   dependencies:
     "@xyo-network/boundwitness-model": "npm:^4.1.7"
     "@xyo-network/boundwitness-wrapper": "npm:^4.1.7"
@@ -2929,13 +2929,13 @@ __metadata:
     "@xyo-network/schema-payload-plugin": "npm:^4.1.7"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
     ajv: "npm:^8.17.1"
-  checksum: 10/55e3b81e75e73d43cf1275ab9e62ada557ad4ece2391ea6511848cd9d09b750e3c44bab4d613637961c7592eb83a8dfc2bf5a85cca905ea05aa83dc704fd0b6f
+  checksum: 10/e2501cf7eba9868ef919fdfcc4d8d71d2a3c283efa1a3c2682fc33738a1e7d37465952c881bbff607f8d5b3002c2d1c7fe91355a42ebab61d12518f217b959c1
   languageName: node
   linkType: hard
 
-"@xyo-network/xl1-validation@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-validation@npm:1.7.16"
+"@xyo-network/xl1-validation@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-validation@npm:1.7.17"
   dependencies:
     "@xylabs/arraybuffer": "npm:^4.13.23"
     "@xylabs/hex": "npm:^4.13.23"
@@ -2945,16 +2945,16 @@ __metadata:
     "@xyo-network/payload-builder": "npm:^4.1.7"
     "@xyo-network/payload-model": "npm:^4.1.7"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
-    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.16"
-    "@xyo-network/xl1-schema": "npm:^1.7.16"
+    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.17"
+    "@xyo-network/xl1-schema": "npm:^1.7.17"
     ajv: "npm:^8.17.1"
-  checksum: 10/53f502a7ec2d074f31d7d596fd166876991cf3927abc044ad8be3482a12e91812091a78eef1f4beb0e3dd936c84fa8bf06b499297af72a600151d237d375324e
+  checksum: 10/bcc4eb15725087ca43634ee06f580a6ac2c96a13daf848c1eb2d69c131e8a0a72fe5bdb43d460ffbce39919f3d2603fe93c6d142ac5a4d8cfb50175c025d4df4
   languageName: node
   linkType: hard
 
-"@xyo-network/xl1-wrappers@npm:^1.7.16":
-  version: 1.7.16
-  resolution: "@xyo-network/xl1-wrappers@npm:1.7.16"
+"@xyo-network/xl1-wrappers@npm:^1.7.17":
+  version: 1.7.17
+  resolution: "@xyo-network/xl1-wrappers@npm:1.7.17"
   dependencies:
     "@xylabs/arraybuffer": "npm:^4.13.23"
     "@xylabs/hex": "npm:^4.13.23"
@@ -2965,9 +2965,9 @@ __metadata:
     "@xyo-network/payload-builder": "npm:^4.1.7"
     "@xyo-network/payload-model": "npm:^4.1.7"
     "@xyo-network/xl1-protocol": "npm:^1.7.20"
-    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.16"
-    "@xyo-network/xl1-validation": "npm:^1.7.16"
-  checksum: 10/7670ad49b19ec7f18cc801a5280d05901b5a85cb5d5a585dd5b458ae78a58cb463b4e4b0ff9bd856513ecdecf029f6fc29a2246172bb333727e94b272352aec6
+    "@xyo-network/xl1-protocol-sdk": "npm:^1.7.17"
+    "@xyo-network/xl1-validation": "npm:^1.7.17"
+  checksum: 10/df77272c174a2cbd9d63d6815b7680a6552e4b544652956702779699fd9fdee65b93f245705c65cb2860e863bdbde27cd5fec3abd182f3ccc727f7025a4f0eec
   languageName: node
   linkType: hard
 
