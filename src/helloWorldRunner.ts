@@ -2,9 +2,7 @@ import { type ChildProcess, spawn } from 'node:child_process'
 
 import { delay } from '@xylabs/delay'
 import { HDWallet } from '@xyo-network/wallet'
-import {
-  ADDRESS_INDEX, DEFAULT_WALLET_PATH, generateXyoBaseWalletFromPhrase,
-} from '@xyo-network/xl1-protocol-sdk'
+import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
 
 import { helloWorld } from './helloWorld.ts'
 
@@ -55,7 +53,7 @@ async function startXl1(): Promise<string> {
     console.log('Wallet address:', account.address)
 
     // Spawn the XL1 process using yarn
-    xl1Process = spawn('yarn', ['xl1', '--producer.mnemonic', JSON.stringify(mnemonic)], {
+    xl1Process = spawn('yarn', ['xl1', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
       stdio: ['ignore', 'pipe', 'pipe'],
       shell: true,
     })
