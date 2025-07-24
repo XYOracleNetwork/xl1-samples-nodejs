@@ -83,7 +83,7 @@ async function startXl1(): Promise<string> {
       throw error
     })
 
-    await delay(1000)
+    await delay(3000)
     return mnemonic
   } catch (error) {
     console.error('Error starting XL1:', error)
