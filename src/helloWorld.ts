@@ -6,14 +6,13 @@ import { confirmTransaction, RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
 import { submitTransaction } from './submitTransaction.ts'
+// Load environment variables from .env file
+config({ quiet: true })
 
 export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost:8080/rpc'): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
     // console.log(`\n**** With mnemonic:\n${mnemonic} ****\n`)
-
-    // Load environment variables from .env file
-    config({ quiet: true })
 
     // Create a HashPayload to send in the transaction
     const payload: HashPayload = {
