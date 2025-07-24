@@ -38,10 +38,10 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
     const txBW = await submitTransaction([payload], [], connection)
 
     // Confirm the transaction is added to the chain
-    const onConfirm = (txBWHash: string) => {
-      console.log('To see your transaction on our Blockchain Explorer:\n')
+    const onConfirm = () => {
+      console.log('To explore your local blockchain:\n')
       console.log('1. Install the XYO Layer One Wallet from https://chromewebstore.google.com/detail/xl1-wallet/fblbagcjeigmhakkfgjpdlcapcgmcfbm')
-      console.log(`2. In that same browser, go to: https://explore.xyo.network/xl1/local/transaction/${txBWHash}`)
+      console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
     }
     await connection.confirm(txBW, onConfirm)
   } catch (ex) {
