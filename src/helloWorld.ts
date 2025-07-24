@@ -1,5 +1,5 @@
 import { assertEx } from '@xylabs/assert'
-import { isEmptyString, isError } from '@xylabs/typeof'
+import { isError } from '@xylabs/typeof'
 import type { HashPayload } from '@xyo-network/xl1-model'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
 import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
@@ -22,17 +22,13 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
     }
 
     // Load the account to use for the transaction
-    const walletMnemonic = assertEx(isEmptyString(process.env.XYO_WALLET_MNEMONIC)
-      ? mnemonic
-      : process.env.XYO_WALLET_MNEMONIC, () => 'Unable to resolve mnemonic from environment variable or argument')
+    const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
     const account = await (await generateXyoBaseWalletFromPhrase(walletMnemonic)).derivePath(ADDRESS_INDEX.XYO)
 
     console.log('Using account:', account.address)
 
     // Load the RPC transport using the URL from the environment variable
-    const rpcEndpoint = assertEx(isEmptyString(process.env.XYO_CHAIN_RPC_URL)
-      ? endpoint
-      : process.env.XYO_CHAIN_RPC_URL, () => 'Unable to resolve RPC endpoint from environment variable or argument')
+    const rpcEndpoint = assertEx(process.env.XYO_CHAIN_RPC_URL ?? endpoint, () => 'Unable to resolve RPC endpoint from environment variable or argument')
 
     console.log('Using endpoint:', rpcEndpoint)
 
