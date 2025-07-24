@@ -1,16 +1,16 @@
 import { assertEx } from '@xylabs/assert'
-import { isError } from '@xylabs/typeof'
-import { HDWallet } from '@xyo-network/wallet'
+import { isEmptyString, isError } from '@xylabs/typeof'
 import type { HashPayload } from '@xyo-network/xl1-model'
-import { ADDRESS_INDEX } from '@xyo-network/xl1-protocol-sdk'
+import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
 import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
 import { submitTransaction } from './submitTransaction.ts'
 
-export async function helloWorld(mnemonic?: string, endpoint?: string): Promise<void> {
+export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost:8080/rpc'): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
+    // console.log(`\n**** With mnemonic:\n${mnemonic} ****\n`)
 
     // Load environment variables from .env file
     config({ quiet: true })
