@@ -1,5 +1,7 @@
 import { assertEx } from '@xylabs/assert'
 import { isError } from '@xylabs/typeof'
+import { PayloadBuilder } from '@xyo-network/payload-builder'
+import type { Payload } from '@xyo-network/payload-model'
 import type { HashPayload, HydratedTransaction } from '@xyo-network/xl1-model'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
 import { confirmSubmittedTransaction, RpcXyoConnection } from '@xyo-network/xl1-rpc'
@@ -17,7 +19,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
     // Create a random Payload to send in the transaction
-    const payload = getRandomPayload()
+    const { onChainPayload, offChainPayload } = await getRandomPayload()
 
     // Load the account to use for the transaction
     const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
@@ -32,7 +34,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     const connection = new RpcXyoConnection({ account, endpoint })
 
     // Send the transaction with the Payload to the network via the Provider
-    const txBW = await submitTransaction([payload], [], connection)
+    const txBW = await submitTransaction([onChainPayload], [offChainPayload], connection)
 
     // Confirm the transaction was added to the chain
     const confirmed = await confirmSubmittedTransaction(connection, txBW, { logger })
@@ -49,11 +51,19 @@ const logSuccess = (_tx: HydratedTransaction) => {
   console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
 }
 
-const getRandomPayload = () => {
-  // Create a HashPayload to send in the transaction
-  const payload: HashPayload = {
-    schema: 'network.xyo.hash',
-    hash: '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
+const getRandomPayload = async () => {
+  // Data to store off-chain
+  const offChainPayload: Payload<{ salt: string }> = {
+    schema: 'network.xyo.id',
+    salt: `Hello from Sample - ${new Date().toISOString()}`,
   }
-  return payload
+  // Create a HashPayload to send in the transaction
+  const onChainPayload: HashPayload = {
+    schema: 'network.xyo.hash',
+    hash: await PayloadBuilder.hash(offChainPayload),
+  }
+  return {
+    offChainPayload,
+    onChainPayload,
+  }
 }
