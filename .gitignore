@@ -28,3 +28,5 @@ storybook-static
 .temp-typedoc
 
 .chrome
+yarn.lock
+package-lock.json

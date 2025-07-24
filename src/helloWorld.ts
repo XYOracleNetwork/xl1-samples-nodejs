@@ -5,7 +5,7 @@ import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1
 import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
-import { submitTransaction } from './submitTransaction.ts'
+import { submitTransaction } from './submitTransaction.js'
 
 export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost:8080/rpc'): Promise<void> {
   try {

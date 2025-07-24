@@ -11,6 +11,7 @@ import {
 
 export default [
   { ignores: ['.yarn', '**/dist', '**/build', 'scripts', 'node_modules'] },
+  { files: ['**/*.ts'] },
   unicornConfig,
   workspacesConfig,
   rulesConfig,

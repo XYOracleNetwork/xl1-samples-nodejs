@@ -3,8 +3,8 @@ import { type ChildProcess, spawn } from 'node:child_process'
 import { HDWallet } from '@xyo-network/wallet'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
 
-import { helloWorld } from './helloWorld.ts'
-import { waitForInitialBlocks } from './waitForInitialBlocks.ts'
+import { helloWorld } from './helloWorld.js'
+import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
 /**
  * Starts the XL1 node using 'yarn xl1' command in a child process
