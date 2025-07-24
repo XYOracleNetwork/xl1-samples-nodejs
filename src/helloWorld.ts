@@ -14,11 +14,8 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
-    // Create a HashPayload to send in the transaction
-    const payload: HashPayload = {
-      schema: 'network.xyo.hash',
-      hash: '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
-    }
+    // Create a random Payload to send in the transaction
+    const payload = getRandomPayload()
 
     // Load the account to use for the transaction
     const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
@@ -32,10 +29,10 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
     // Create a new RPC connection to the XL1 API Node
     const connection = new RpcXyoConnection({ account, endpoint: rpcEndpoint })
 
-    // Send the transaction with the payload to the network via the Provider
+    // Send the transaction with the Payload to the network via the Provider
     const txBW = await submitTransaction([payload], [], connection)
 
-    // Confirm the transaction is added to the chain
+    // Confirm the transaction was added to the chain
     confirmTransaction(connection, txBW, logSuccess)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
@@ -47,4 +44,13 @@ const logSuccess = (_hash?: string) => {
   console.log('To explore your local blockchain:\n')
   console.log('1. Install the XYO Layer One Wallet from https://chromewebstore.google.com/detail/xl1-wallet/fblbagcjeigmhakkfgjpdlcapcgmcfbm')
   console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
+}
+
+const getRandomPayload = () => {
+  // Create a HashPayload to send in the transaction
+  const payload: HashPayload = {
+    schema: 'network.xyo.hash',
+    hash: '1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
+  }
+  return payload
 }
