@@ -33,7 +33,7 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
     const txBW = await submitTransaction([payload], [], connection)
 
     // Confirm the transaction was added to the chain
-    confirmTransaction(connection, txBW, logSuccess)
+    await confirmTransaction(connection, txBW, logSuccess)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
     process.exitCode = 1
