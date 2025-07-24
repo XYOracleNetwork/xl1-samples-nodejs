@@ -22,13 +22,17 @@ export async function helloWorld(mnemonic?: string, endpoint = 'http://localhost
     }
 
     // Load the account to use for the transaction
-    const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Missing environment variable: XYO_WALLET_MNEMONIC')
-    const account = await HDWallet.fromPhrase(walletMnemonic, ADDRESS_INDEX.XYO)
+    const walletMnemonic = assertEx(isEmptyString(process.env.XYO_WALLET_MNEMONIC)
+      ? mnemonic
+      : process.env.XYO_WALLET_MNEMONIC, () => 'Unable to resolve mnemonic from environment variable or argument')
+    const account = await (await generateXyoBaseWalletFromPhrase(walletMnemonic)).derivePath(ADDRESS_INDEX.XYO)
 
     console.log('Using account:', account.address)
 
     // Load the RPC transport using the URL from the environment variable
-    const rpcEndpoint = assertEx(process.env.XYO_CHAIN_RPC_URL ?? endpoint, () => 'Missing environment variable: XYO_CHAIN_RPC_URL')
+    const rpcEndpoint = assertEx(isEmptyString(process.env.XYO_CHAIN_RPC_URL)
+      ? endpoint
+      : process.env.XYO_CHAIN_RPC_URL, () => 'Unable to resolve RPC endpoint from environment variable or argument')
 
     console.log('Using endpoint:', rpcEndpoint)
 
