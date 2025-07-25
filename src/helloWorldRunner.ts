@@ -7,7 +7,7 @@ import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
 /**
- * Starts the XL1 node using 'yarn xl1' command in a child process
+ * Starts the XL1 node using command in a child process
  * The child process will be terminated when the parent process exits
  * @returns Promise that resolves when XL1 is ready
  */
@@ -52,8 +52,8 @@ async function startXl1(): Promise<string> {
     console.log('Generated mnemonic:', mnemonic)
     console.log('Producer Wallet address:', account.address)
 
-    // Spawn the XL1 process using yarn
-    xl1Process = spawn('yarn', ['xl1', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
+    // Spawn the XL1 process
+    xl1Process = spawn('node', ['./node_modules/@xyo-network/xl1-cli/scripts/xl1.mjs', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
       stdio: ['ignore', 'pipe', 'pipe'],
       shell: true,
     })
@@ -61,12 +61,12 @@ async function startXl1(): Promise<string> {
     // Forward stdout to console
     xl1Process.stdout?.on('data', (data) => {
       const output = data.toString().trim()
-      console.log(`[XL1] ${output}`)
+      console.log(`[XL1][stdout] ${output}`)
     })
 
     // Forward stderr to console
     xl1Process.stderr?.on('data', (data) => {
-      console.error(`[XL1] ${data.toString().trim()}`)
+      console.error(`[XL1][stderr]${data.toString().trim()}`)
     })
 
     // Handle process exit

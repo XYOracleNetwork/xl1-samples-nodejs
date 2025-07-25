@@ -21,7 +21,8 @@
     "lint": "eslint",
     "readme:gen": "node scripts/readme-gen.mjs",
     "runner": "tsx ./src/helloWorldRunner.ts",
-    "start": "tsx ./src/index.ts"
+    "start": "tsx ./src/index.ts",
+    "xl1": "xl1 ."
   },
   "dependencies": {
     "@xylabs/assert": "~4.13.23",
@@ -48,13 +49,13 @@
     "typedoc-plugin-markdown": "~4.7.1",
     "typescript": "~5.8.3"
   },
-  "packageManager": "yarn@4.9.2",
   "engines": {
     "node": ">=22"
   },
   "volta": {
     "node": "22.5.1",
-    "yarn": "4.9.2"
+    "yarn": "4.9.2",
+    "npm": "10.9.2"
   },
   "publishConfig": {
     "access": "restricted"
