@@ -28,4 +28,5 @@ export const waitForInitialBlocks = async (): Promise<void> => {
     console.log(`🔁 XL1 not ready yet, retrying in 1 second... (${attempts}/${maxAttempts})`)
     await delay(1000)
   }
+  throw new Error('XL1 did not start in time, please check the logs for errors')
 }
