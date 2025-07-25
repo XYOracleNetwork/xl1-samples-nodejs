@@ -29,4 +29,5 @@ storybook-static
 
 .chrome
 yarn.lock
+.yarnrc.yml
 package-lock.json
