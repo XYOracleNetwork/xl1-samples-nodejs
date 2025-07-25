@@ -23,9 +23,7 @@ export const waitForInitialBlocks = async (): Promise<void> => {
       if (block?.block === 1) {
         return // Success
       }
-    } catch {
-      console.error('testing error handling') // For testing purposes, remove in production
-    }
+    } catch {}
 
     console.log(`🔁 XL1 not ready yet, retrying in 1 second... (${attempts}/${maxAttempts})`)
     await delay(1000)
