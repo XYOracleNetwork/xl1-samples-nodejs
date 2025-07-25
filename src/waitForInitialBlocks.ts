@@ -11,19 +11,18 @@ export const waitForInitialBlocks = async (): Promise<void> => {
   while (attempts < maxAttempts) {
     attempts++
     try {
-      throw new Error('test throw')
-      // const viewer = connection.viewer
+      const viewer = connection.viewer
 
-      // if (!viewer || typeof viewer.currentBlock !== 'function') {
-      //   throw new Error('Viewer or currentBlock() is not available')
-      // }
+      if (!viewer || typeof viewer.currentBlock !== 'function') {
+        throw new Error('Viewer or currentBlock() is not available')
+      }
 
-      // const blocks = await viewer.currentBlock()
-      // const [block] = blocks ?? []
+      const blocks = await viewer.currentBlock()
+      const [block] = blocks ?? []
 
-      // if (block?.block === 1) {
-      //   return // Success
-      // }
+      if (block?.block === 1) {
+        return // Success
+      }
     } catch {
       console.error('testing error handling') // For testing purposes, remove in production
     }
