@@ -70,6 +70,7 @@ async function startXl1(): Promise<string> {
     })
 
     // Handle process exit
+    // BUG: PNPM seems to close the process with code 1 upon and caught exception
     xl1Process.on('close', (code) => {
       if (code !== 0 && xl1Process !== null) {
         console.error(`XL1 process exited with code ${code}`)

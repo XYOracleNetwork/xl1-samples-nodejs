@@ -30,3 +30,4 @@ storybook-static
 .chrome
 yarn.lock
 package-lock.json
+pnpm-lock.yaml
