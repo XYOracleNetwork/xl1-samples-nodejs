@@ -4,28 +4,28 @@ import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
 export const waitForInitialBlocks = async (): Promise<void> => {
   const connection = new RpcXyoConnection({ endpoint: 'http://localhost:8080/rpc' })
 
-  console.log('\n Waiting for genesis block creation')
-  let ready = false
-  let attempts = 0
+  console.log('\n⏳ Waiting for genesis block creation...')
   const maxAttempts = 10
-  while (!ready && attempts < maxAttempts) {
+  let attempts = 0
+
+  while (attempts < maxAttempts) {
+    attempts++
     try {
-      // Check if the connection is ready
-      const [block] = await connection.viewer?.currentBlock() ?? []
-      // ensure that all initial blocks are created
+      const viewer = connection.viewer
+
+      if (!viewer || typeof viewer.currentBlock !== 'function') {
+        throw new Error('Viewer or currentBlock() is not available')
+      }
+
+      const blocks = await viewer.currentBlock()
+      const [block] = blocks ?? []
+
       if (block?.block === 1) {
-        ready = true
+        return // Success
       }
-    } catch {
-      console.error()
-    }
-    if (!ready) {
-      if (attempts >= maxAttempts) {
-        throw new Error('XL1 did not become ready within the expected time frame.')
-      }
-      attempts++
-      console.log(`XL1 not ready yet, retrying in 1 second... (${attempts}/10)`)
-      await delay(1000)
-    }
+    } catch {}
+
+    console.log(`🔁 XL1 not ready yet, retrying in 1 second... (${attempts}/${maxAttempts})`)
+    await delay(1000)
   }
 }
