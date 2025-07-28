@@ -31,15 +31,15 @@
     "@xyo-network/payload-builder": "~4.1.7",
     "@xyo-network/wallet": "~4.1.7",
     "@xyo-network/xl1-protocol": "~1.7.20",
-    "@xyo-network/xl1-protocol-sdk": "~1.7.18",
-    "@xyo-network/xl1-rpc": "~1.7.18",
+    "@xyo-network/xl1-protocol-sdk": "~1.7.20",
+    "@xyo-network/xl1-rpc": "~1.7.20",
     "dotenv": "~17.2.0"
   },
   "devDependencies": {
     "@types/node": "~24.1.0",
     "@xylabs/eslint-config-flat": "~7.0.1",
     "@xyo-network/payload-model": "~4.1.7",
-    "@xyo-network/xl1-cli": "~1.7.18",
+    "@xyo-network/xl1-cli": "~1.7.20",
     "eslint": "~9.31.0",
     "eslint-import-resolver-typescript": "~4.4.4",
     "tsx": "~4.20.3",
