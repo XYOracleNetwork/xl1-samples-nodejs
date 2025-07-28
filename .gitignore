@@ -4,6 +4,7 @@ docs
 bin
 .DS_Store
 *.log
+*.tgz
 .rollup.cache
 .tsconfig*
 .pnp.*
