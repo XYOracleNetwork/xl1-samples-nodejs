@@ -10,7 +10,7 @@ import {
 } from '@xylabs/eslint-config-flat'
 
 export default [
-  { ignores: ['.yarn', '**/dist', '**/build', 'scripts', 'node_modules', '*.mjs'] },
+  { ignores: ['.yarn', '**/dist', '**/build', 'scripts', 'node_modules', '*.cjs', '*.mjs'] },
   { files: ['**/*.ts'] },
   unicornConfig,
   workspacesConfig,
