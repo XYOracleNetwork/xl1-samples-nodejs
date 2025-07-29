@@ -23,6 +23,7 @@
       ],
       "pauseForSourceMap": true,
       "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build",
     },
   ]
 }
