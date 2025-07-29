@@ -25,5 +25,26 @@
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "build",
     },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node Hello World Runner",
+      "program": "${workspaceFolder}/dist/helloWorldRunner.js",
+      "args": [],
+      "outFiles": [
+        "${workspaceFolder}/dist/**"
+      ],
+      "runtimeArgs": [
+        "--max-old-space-size=8192"
+      ],
+      "envFile": "${workspaceFolder}/.env",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "!**/node_modules/**",
+      ],
+      "pauseForSourceMap": true,
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build",
+    },
   ]
 }
