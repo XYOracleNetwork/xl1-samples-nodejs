@@ -1,8 +1,8 @@
 import { delay } from '@xylabs/delay'
-import { RpcXyoConnection } from '@xyo-network/xl1-rpc'
+import { HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
 
 export const waitForInitialBlocks = async (): Promise<void> => {
-  const connection = new RpcXyoConnection({ endpoint: 'http://localhost:8080/rpc' })
+  const connection = new HttpRpcXyoConnection({ endpoint: 'http://localhost:8080/rpc' })
 
   console.log('\n⏳ Waiting for genesis block creation...')
   const maxAttempts = 10
