@@ -20,25 +20,25 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
-    // Create a random Payload to send in the transaction
-    const { onChainPayload, offChainPayload } = await getRandomPayload()
-
     // Load the account to use for the transaction
     const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
     const account = await (await generateXyoBaseWalletFromPhrase(walletMnemonic)).derivePath(ADDRESS_INDEX.XYO)
     console.log('Using account:', account.address)
 
-    // Load the RPC transport using the URL from the environment variable
+    // Determine the RPC endpoint to use for the chain connection
     const endpoint = process.env.XYO_CHAIN_RPC_URL ?? rpcEndpoint
     console.log('Using endpoint:', endpoint)
 
-    // Create a new RPC connection to the XL1 API Node
+    // Create a new RPC connection
     const connection = new HttpRpcXyoConnection({ account, endpoint })
 
-    // Use the connection to send the transaction to the network
+    // Generate random Payloads to send in the transaction
+    const { onChainPayload, offChainPayload } = await getRandomPayloads()
+
+    // Send the transaction to the network
     const tx = await submitTransaction([onChainPayload], [offChainPayload], connection)
 
-    // Use the viewer to confirm the transaction was included in the chain
+    // Wait for confirmation the transaction was included in the chain
     const viewer = assertEx(connection.viewer, () => 'Connection viewer is undefined')
     const confirmed = await confirmSubmittedTransaction(viewer, tx, { logger })
     logSuccess(confirmed)
@@ -54,7 +54,7 @@ const logSuccess = (_tx: HydratedTransaction) => {
   console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
 }
 
-const getRandomPayload = async () => {
+const getRandomPayloads = async () => {
   // Data to store off-chain
   const offChainPayload: Payload<{ salt: string }> = {
     schema: 'network.xyo.id',
