@@ -4,7 +4,7 @@ import { PayloadBuilder } from '@xyo-network/payload-builder'
 import type { Payload } from '@xyo-network/payload-model'
 import type { HashPayload, HydratedTransaction } from '@xyo-network/xl1-protocol'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
-import { confirmSubmittedTransaction, RpcXyoConnection } from '@xyo-network/xl1-rpc'
+import { confirmSubmittedTransaction, HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
 
 import { submitTransaction } from './submitTransaction.js'
@@ -31,7 +31,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     console.log('Using endpoint:', endpoint)
 
     // Create a new RPC connection to the XL1 API Node
-    const connection = new RpcXyoConnection({ account, endpoint })
+    const connection = new HttpRpcXyoConnection({ account, endpoint })
 
     // Send the transaction with the Payload to the network via the Provider
     const txBW = await submitTransaction([onChainPayload], [offChainPayload], connection)
