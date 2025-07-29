@@ -32,11 +32,11 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     // Create a new RPC connection
     const connection = new HttpRpcXyoConnection({ account, endpoint })
 
-    // Generate random Payloads to send in the transaction
-    const { onChainPayload, offChainPayload } = await getRandomPayloads()
+    // Generate random data to send in the transaction
+    const { onChainData, offChainData } = await getRandomTransactionData()
 
     // Send the transaction to the network
-    const tx = await submitTransaction([onChainPayload], [offChainPayload], connection)
+    const tx = await submitTransaction(onChainData, offChainData, connection)
 
     // Wait for confirmation the transaction was included in the chain
     const viewer = assertEx(connection.viewer, () => 'Connection viewer is undefined')
@@ -54,19 +54,21 @@ const logSuccess = (_tx: HydratedTransaction) => {
   console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
 }
 
-const getRandomPayloads = async () => {
+/**
+ * Generates random data for a transaction.
+ * @returns An object containing off-chain and on-chain data for the transaction.
+ */
+const getRandomTransactionData = async () => {
   // Data to store off-chain
-  const offChainPayload: Payload<{ salt: string }> = {
-    schema: 'network.xyo.id',
-    salt: `Hello from Sample - ${new Date().toISOString()}`,
-  }
-  // Create a HashPayload to send in the transaction
-  const onChainPayload: HashPayload = {
-    schema: 'network.xyo.hash',
-    hash: await PayloadBuilder.hash(offChainPayload),
-  }
+  const salt = `Hello from Sample - ${new Date().toISOString()}`
+  const idPayload: Payload<{ salt: string }> = { schema: 'network.xyo.id', salt }
+
+  // Data to store on-chain (can reference the off-chain data)
+  const hash = await PayloadBuilder.hash(idPayload)
+  const hashPayload: HashPayload = { schema: 'network.xyo.hash', hash }
+
   return {
-    offChainPayload,
-    onChainPayload,
+    offChainData: [idPayload],
+    onChainData: [hashPayload],
   }
 }
