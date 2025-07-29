@@ -36,7 +36,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     const { onChainData, offChainData } = await getRandomTransactionData()
 
     // Send the transaction to the network
-    const tx = await submitTransaction(onChainData, offChainData, connection)
+    const [tx] = await submitTransaction(onChainData, offChainData, connection)
 
     // Wait for confirmation the transaction was included in the chain
     const viewer = assertEx(connection.viewer, () => 'Connection viewer is undefined')
