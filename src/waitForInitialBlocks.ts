@@ -13,7 +13,7 @@ export const waitForInitialBlocks = async (maxAttempts = 10): Promise<void> => {
     attempts++
     try {
       const [block] = (await viewer.currentBlock()) ?? []
-      if (isDefined(block?.block)) {
+      if (isDefined(block?.block) && block.block > 0) {
         return // Success
       }
     } catch {}
