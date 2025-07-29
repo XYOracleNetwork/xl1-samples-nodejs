@@ -1,5 +1,6 @@
 import { assertEx } from '@xylabs/assert'
 import { delay } from '@xylabs/delay'
+import { isDefined } from '@xylabs/typeof'
 import { HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
 
 export const waitForInitialBlocks = async (maxAttempts = 10): Promise<void> => {
@@ -12,7 +13,7 @@ export const waitForInitialBlocks = async (maxAttempts = 10): Promise<void> => {
     attempts++
     try {
       const [block] = (await viewer.currentBlock()) ?? []
-      if (block?.block > 0) {
+      if (isDefined(block?.block)) {
         return // Success
       }
     } catch {}
