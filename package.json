@@ -21,7 +21,6 @@
     "lint": "eslint",
     "readme:gen": "node scripts/readme-gen.mjs",
     "runner": "tsx ./src/helloWorldRunner.ts",
-    "start": "tsx ./src/index.ts",
     "xl1": "xl1 ."
   },
   "dependencies": {
