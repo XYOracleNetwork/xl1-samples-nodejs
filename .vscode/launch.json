@@ -8,30 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Node Hello World Sample",
-      "program": "${workspaceFolder}/dist/node/index.mjs",
+      "program": "${workspaceFolder}/dist/index.js",
       "args": [],
       "outFiles": [
-        "${workspaceFolder}/dist/**/*.mjs"
-      ],
-      "runtimeArgs": [
-        "--max-old-space-size=8192"
-      ],
-      "envFile": "${workspaceFolder}/.env",
-      "sourceMaps": true,
-      "resolveSourceMapLocations": [
-        "!**/node_modules/**",
-      ],
-      "pauseForSourceMap": true,
-      "cwd": "${workspaceFolder}",
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Node Hello World Sample (w/xl1)",
-      "program": "${workspaceFolder}/dist/node/helloWorldRunner.mjs",
-      "args": [],
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.mjs"
+        "${workspaceFolder}/dist/**"
       ],
       "runtimeArgs": [
         "--max-old-space-size=8192"
