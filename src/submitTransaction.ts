@@ -1,7 +1,8 @@
 import { assertEx } from '@xylabs/assert'
 import type { Payload } from '@xyo-network/payload-model'
-import type {
-  AllowedBlockPayload, HydratedTransaction, XyoConnectionProvider,
+import {
+  type AllowedBlockPayload,
+  type HydratedTransaction, type XyoConnectionProvider,
 } from '@xyo-network/xl1-protocol'
 
 export const submitTransaction = async (
