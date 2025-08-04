@@ -2,12 +2,6 @@
 
 [![logo][]](https://xyo.network)
 
-[![npm-badge][]][npm-link]
-[![npm-downloads-badge][]][npm-link]
-[![jsdelivr-badge][]][jsdelivr-link]
-[![npm-license-badge][]](LICENSE)
-[![socket-badge][]][socket-link]
-
 XYO Layer One Protocol Sample Code [Node]
 
 ## Prerequisites
