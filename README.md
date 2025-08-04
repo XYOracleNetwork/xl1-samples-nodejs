@@ -10,6 +10,10 @@
 
 XYO Layer One Protocol Sample Code [Node]
 
+## Prerequisites
+
+1. Nodejs version 22
+
 ## Getting Started
 
 1. Install the dependencies: `npm install`
