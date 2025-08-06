@@ -14,6 +14,9 @@ XYO Layer One Protocol Sample Code [Node]
 1. Run `npm run start`
 1. To view your transaction, follow instructions at the end of the sample output
 
+## Issues
+
+Please log any issues at our [XL1 Support Repo](https://github.com/XYOracleNetwork/xl1-issues).
 
 ## Maintainers
 
