@@ -19,10 +19,10 @@
     "build": "tsc && eslint",
     "compile": "tsc",
     "lint": "eslint",
+    "check-node-version": "node ./scripts/check-node-version.mjs",
     "readme:gen": "node scripts/readme-gen.mjs",
-    "start": "tsx ./src/helloWorldRunner.ts",
-    "start-sample": "tsx ./src/index.ts",
-    "xl1": "xl1 ."
+    "start": "node ./scripts/check-node-version.mjs && tsx ./src/helloWorldRunner.ts",
+    "start-sample": "node ./scripts/check-node-version.mjs && tsx ./src/index.ts"
   },
   "dependencies": {
     "@xylabs/assert": "~5.0.0",
@@ -48,7 +48,7 @@
     "typescript": "~5.8.3"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.0.0 <23.0.0 || >=24.0.0 <25.0.0"
   },
   "volta": {
     "node": "22.5.1",
