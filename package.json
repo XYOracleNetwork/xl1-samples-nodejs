@@ -5,7 +5,7 @@
   "description": "XYO Layer One Protocol Sample Code [Node]",
   "homepage": "https://xyo.network",
   "bugs": {
-    "url": "git+https://github.com/XYOracleNetwork/xl1-samples-nodejs/issues",
+    "url": "git+https://github.com/XYOracleNetwork/xl1-issues/issues",
     "email": "support@xylabs.com"
   },
   "repository": {
@@ -20,30 +20,32 @@
     "compile": "tsc",
     "lint": "eslint",
     "check-node-version": "node ./scripts/check-node-version.mjs",
-    "readme:gen": "node scripts/readme-gen.mjs",
+    "readme:gen": "node ./scripts/readme-gen.mjs",
     "start": "node ./scripts/check-node-version.mjs && tsx ./src/helloWorldRunner.ts",
-    "start-sample": "node ./scripts/check-node-version.mjs && tsx ./src/index.ts"
+    "start-sample": "node ./scripts/check-node-version.mjs && tsx ./src/index.ts",
+    "updo": "npx npm-check -u"
   },
   "dependencies": {
-    "@xylabs/assert": "~5.0.0",
-    "@xylabs/delay": "~5.0.0",
-    "@xylabs/typeof": "~5.0.0",
+    "@xylabs/assert": "~5.0.3",
+    "@xylabs/delay": "~5.0.3",
+    "@xylabs/typeof": "~5.0.3",
     "@xyo-network/payload-builder": "~5.0.0",
     "@xyo-network/wallet": "~5.0.0",
-    "@xyo-network/xl1-protocol": "~1.8.0",
-    "@xyo-network/xl1-protocol-sdk": "~1.9.0",
-    "@xyo-network/xl1-rpc": "~1.9.0",
+    "@xyo-network/xl1-protocol": "~1.9.3",
+    "@xyo-network/xl1-protocol-sdk": "~1.10.0",
+    "@xyo-network/xl1-rpc": "~1.10.0",
     "dotenv": "~17.2.1"
   },
   "devDependencies": {
-    "@types/node": "~24.1.0",
-    "@xylabs/eslint-config-flat": "~7.0.2",
+    "@types/node": "~24.2.0",
+    "@xylabs/eslint-config-flat": "~7.1.0",
     "@xyo-network/payload-model": "~5.0.0",
-    "@xyo-network/xl1-cli": "~1.9.0",
+    "@xyo-network/xl1-cli": "~1.10.0",
     "eslint": "~9.32.0",
     "eslint-import-resolver-typescript": "~4.4.4",
+    "npm-check": "~6.0.1",
     "tsx": "~4.20.3",
-    "typedoc": "~0.28.8",
+    "typedoc": "0.28.9",
     "typedoc-plugin-markdown": "~4.8.0",
     "typescript": "~5.8.3"
   },
