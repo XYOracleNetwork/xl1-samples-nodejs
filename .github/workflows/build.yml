@@ -21,7 +21,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: yarn
 
       # Turn off windows-defender for this folder to speed up compile
       - if: runner.os == 'Windows'
@@ -29,13 +28,7 @@ jobs:
         run: powershell -Command Add-MpPreference -ExclusionPath "."
 
       - name: install
-        run: yarn install --network-timeout 1000000
+        run: npm install --network-timeout 1000000
 
-      # - name: build
-      #   run: yarn xy build
-
-      # - name: statics
-      #   run: yarn xy statics
-
-      - name: build-storybook
-        run: yarn build-storybook
+      - name: build
+        run: npm run build
