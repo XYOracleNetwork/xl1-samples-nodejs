@@ -20,7 +20,6 @@
     "compile": "tsc",
     "lint": "eslint",
     "check-node-version": "node ./scripts/check-node-version.mjs",
-    "readme:gen": "node ./scripts/readme-gen.mjs",
     "start": "node ./scripts/check-node-version.mjs && tsx ./src/helloWorldRunner.ts",
     "start-sample": "node ./scripts/check-node-version.mjs && tsx ./src/index.ts",
     "updo": "npx npm-check -u"
@@ -46,8 +45,6 @@
     "eslint-import-resolver-typescript": "~4.4.4",
     "npm-check": "~6.0.1",
     "tsx": "~4.20.3",
-    "typedoc": "0.28.9",
-    "typedoc-plugin-markdown": "~4.8.0",
     "typescript": "~5.8.3"
   },
   "engines": {
