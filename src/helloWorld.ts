@@ -2,7 +2,7 @@ import { assertEx } from '@xylabs/assert'
 import { isError } from '@xylabs/typeof'
 import { PayloadBuilder } from '@xyo-network/payload-builder'
 import type { Payload } from '@xyo-network/payload-model'
-import type { HashPayload, HydratedTransaction } from '@xyo-network/xl1-protocol'
+import type { HashPayload, SignedHydratedTransaction } from '@xyo-network/xl1-protocol'
 import {
   ADDRESS_INDEX, confirmSubmittedTransaction, generateXyoBaseWalletFromPhrase,
 } from '@xyo-network/xl1-protocol-sdk'
@@ -48,7 +48,7 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
   }
 }
 
-const logSuccess = (_tx: HydratedTransaction) => {
+const logSuccess = (_tx: SignedHydratedTransaction) => {
   console.log('To explore your local blockchain:\n')
   console.log('1. Install the XYO Layer One Wallet from https://chromewebstore.google.com/detail/xl1-wallet/fblbagcjeigmhakkfgjpdlcapcgmcfbm')
   console.log('2. In that same browser, go to: https://explore.xyo.network/xl1/local/')
