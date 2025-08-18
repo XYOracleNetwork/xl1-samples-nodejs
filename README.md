@@ -2,6 +2,8 @@
 
 [![logo][]](https://xyo.network)
 
+[![main-build][]][main-build-link]
+
 XYO Layer One Protocol Sample Code [Node]
 
 ## Prerequisites
@@ -35,14 +37,5 @@ Please log any issues at our [XL1 Support Repo](https://github.com/XYOracleNetwo
 
 [logo]: https://cdn.xy.company/img/brand/XYO_full_colored.png
 
-[npm-badge]: https://img.shields.io/npm/v/@xyo-network/xl1-samples-nodejs.svg
-[npm-link]: https://www.npmjs.com/package/@xyo-network/xl1-samples-nodejs
-
-[npm-downloads-badge]: https://img.shields.io/npm/dw/@xyo-network/xl1-samples-nodejs
-[npm-license-badge]: https://img.shields.io/npm/l/@xyo-network/xl1-samples-nodejs
-
-[jsdelivr-badge]: https://data.jsdelivr.com/v1/package/npm/@xyo-network/xl1-samples-nodejs/badge
-[jsdelivr-link]: https://www.jsdelivr.com/package/npm/@xyo-network/xl1-samples-nodejs
-
-[socket-badge]: https://socket.dev/api/badge/npm/package/@xyo-network/xl1-samples-nodejs
-[socket-link]: https://socket.dev/npm/package/@xyo-network/xl1-samples-nodejs
+[main-build]: https://github.com/XYOracleNetwork/xl1-samples-nodejs/actions/workflows/build.yml/badge.svg
+[main-build-link]: https://github.com/XYOracleNetwork/xl1-samples-nodejs/actions/workflows/build.yml
