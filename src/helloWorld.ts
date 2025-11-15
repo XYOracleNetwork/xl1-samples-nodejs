@@ -4,12 +4,12 @@ import { PayloadBuilder } from '@xyo-network/payload-builder'
 import type { Payload } from '@xyo-network/payload-model'
 import type { HashPayload, SignedHydratedTransaction } from '@xyo-network/xl1-protocol'
 import {
-  ADDRESS_INDEX, confirmSubmittedTransaction, generateXyoBaseWalletFromPhrase,
+  ADDRESS_INDEX, generateXyoBaseWalletFromPhrase,
+  SimpleXyoGatewayRunner,
+  SimpleXyoSigner,
 } from '@xyo-network/xl1-protocol-sdk'
 import { HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
-
-import { submitTransaction } from './submitTransaction.js'
 
 // Load environment variables from .env file
 config({ quiet: true })
@@ -30,17 +30,18 @@ export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localh
     console.log('Using endpoint:', endpoint)
 
     // Create a new RPC connection
-    const connection = new HttpRpcXyoConnection({ account, endpoint })
+    const connection = new HttpRpcXyoConnection({ endpoint })
+    const signer = new SimpleXyoSigner(account)
+    const gateway = new SimpleXyoGatewayRunner(connection, signer)
 
     // Generate random data to send in the transaction
     const { onChainData, offChainData } = await getRandomTransactionData()
 
     // Send the transaction to the network
-    const [tx] = await submitTransaction(onChainData, offChainData, connection)
+    const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)
 
     // Wait for confirmation the transaction was included in the chain
-    const viewer = assertEx(connection.viewer, () => 'Connection viewer is undefined')
-    const confirmed = await confirmSubmittedTransaction(viewer, tx, { logger })
+    const confirmed = await gateway.confirmSubmittedTransaction(txHash, { logger })
     logSuccess(confirmed)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
