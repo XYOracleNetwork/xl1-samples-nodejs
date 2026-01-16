@@ -31,9 +31,7 @@
     "@xylabs/tsconfig": "7.2.32",
     "@xyo-network/payload-builder": "5.2.24",
     "@xyo-network/wallet": "5.2.24",
-    "@xyo-network/xl1-protocol": "1.18.14",
-    "@xyo-network/xl1-protocol-sdk": "1.18.14",
-    "@xyo-network/xl1-rpc": "1.18.14",
+    "@xyo-network/xl1-sdk": "~1.18.2",
     "dotenv": "17.2.3"
   },
   "devDependencies": {
