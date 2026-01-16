@@ -1,8 +1,12 @@
 import { type ChildProcess, spawn } from 'node:child_process'
 
 import { HDWallet } from '@xyo-network/wallet'
-import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-protocol-sdk'
+import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
+import {
+  ADDRESS_INDEX, generateXyoBaseWalletFromPhrase, XyoViewerMoniker,
+} from '@xyo-network/xl1-protocol-sdk'
 
+import { getLocator } from './getGateway.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
@@ -83,7 +87,12 @@ async function startXl1(): Promise<string> {
       throw error
     })
 
-    await waitForInitialBlocks()
+    // Get the XyoViewer instance
+    const locator = await getLocator()
+    const viewer = await locator.getInstance<XyoViewer>(XyoViewerMoniker)
+
+    // Wait for the initial blocks to be created
+    await waitForInitialBlocks(viewer)
 
     return mnemonic
   } catch (error) {
