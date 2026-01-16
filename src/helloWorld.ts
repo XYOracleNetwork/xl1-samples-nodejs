@@ -1,41 +1,24 @@
-import { assertEx } from '@xylabs/assert'
 import { isError } from '@xylabs/typeof'
 import { PayloadBuilder } from '@xyo-network/payload-builder'
 import type { Payload } from '@xyo-network/payload-model'
 import type { HashPayload, SignedHydratedTransaction } from '@xyo-network/xl1-protocol'
-import {
-  ADDRESS_INDEX, generateXyoBaseWalletFromPhrase,
-  SimpleXyoGatewayRunner,
-  SimpleXyoSigner,
-} from '@xyo-network/xl1-protocol-sdk'
-import { HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
 import { config } from 'dotenv'
+
+import { getGateway } from './getGateway.ts'
 
 // Load environment variables from .env file
 config({ quiet: true })
 
 const logger = console
 
-export async function helloWorld(mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc'): Promise<void> {
+export async function helloWorld(mnemonic?: string): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
-    // Load the account to use for the transaction
-    const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
-    const account = await (await generateXyoBaseWalletFromPhrase(walletMnemonic)).derivePath(ADDRESS_INDEX.XYO)
-    console.log('Using account:', account.address)
-
-    // Determine the RPC endpoint to use for the chain connection
-    const endpoint = process.env.XYO_CHAIN_RPC_URL ?? rpcEndpoint
-    console.log('Using endpoint:', endpoint)
-
-    // Create a new RPC connection
-    const connection = new HttpRpcXyoConnection({ endpoint })
-    const signer = new SimpleXyoSigner(account)
-    const gateway = new SimpleXyoGatewayRunner(connection, signer)
-
     // Generate random data to send in the transaction
     const { onChainData, offChainData } = await getRandomTransactionData()
+
+    const gateway = await getGateway(mnemonic)
 
     // Send the transaction to the network
     const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)
