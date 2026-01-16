@@ -6,7 +6,7 @@ import {
   ADDRESS_INDEX, generateXyoBaseWalletFromPhrase, XyoViewerMoniker,
 } from '@xyo-network/xl1-protocol-sdk'
 
-import { getLocator } from './getGateway.ts'
+import { getLocator } from './getLocator.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 

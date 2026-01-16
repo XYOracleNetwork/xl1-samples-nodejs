@@ -1,16 +1,12 @@
 import { assertEx } from '@xylabs/assert'
-import { isDefined } from '@xylabs/typeof'
-import type {
-  CreatableProviderContext,
-  ProviderFactoryLocator,
-  RpcSchemaMap, TransportFactory, XyoConnection,
-} from '@xyo-network/xl1-sdk'
+import type { XyoConnection } from '@xyo-network/xl1-sdk'
 import {
-  ADDRESS_INDEX, buildJsonRpcProviderLocator, buildSimpleXyoSigner, generateXyoBaseWalletFromPhrase,
-  HttpRpcTransport, SimpleXyoGatewayRunner, XyoConnectionMoniker,
+  ADDRESS_INDEX,
+  buildSimpleXyoSigner, generateXyoBaseWalletFromPhrase,
+  SimpleXyoGatewayRunner, XyoConnectionMoniker,
 } from '@xyo-network/xl1-sdk'
 
-let locator: ProviderFactoryLocator<CreatableProviderContext, string[]>
+import { getLocator } from './getLocator.ts'
 
 export const getGateway = async (mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc') => {
   // Load the account to use for the transaction
@@ -29,15 +25,4 @@ export const getGateway = async (mnemonic?: string, rpcEndpoint = 'http://localh
 
   // Return a new SimpleXyoGatewayRunner instance
   return new SimpleXyoGatewayRunner(connection, signer)
-}
-
-export const getLocator = async (rpcEndpoint = 'http://localhost:8080/rpc') => {
-  if (isDefined(locator)) return locator
-  // Determine the RPC endpoint to use for the chain connection
-  const endpoint = process.env.XYO_CHAIN_RPC_URL ?? rpcEndpoint
-  console.log('Using endpoint:', endpoint)
-
-  const transportFactory: TransportFactory = (schemas: RpcSchemaMap) => new HttpRpcTransport(endpoint, schemas)
-  locator = await buildJsonRpcProviderLocator({ transportFactory })
-  return locator
 }
