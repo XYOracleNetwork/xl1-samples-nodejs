@@ -2,7 +2,6 @@ import { type ChildProcess, spawn } from 'node:child_process'
 
 import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
 import { XyoViewerMoniker } from '@xyo-network/xl1-protocol-sdk'
-import { config } from 'dotenv'
 
 import { getLocator } from './getLocator.ts'
 import { getMnemonic } from './getMnemonic.ts'
@@ -10,9 +9,6 @@ import { getRpcUrl } from './getRpcUrl.ts'
 import { getSignerAccount } from './getSignerAccount.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
-
-// Load environment variables from .env file
-config({ quiet: true })
 
 // Parse the relevant ENV VARs or use defaults
 const mnemonic = getMnemonic()
