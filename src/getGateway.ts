@@ -9,12 +9,12 @@ import { getSignerAccount } from './getSignerAccount.ts'
 
 let gateway: SimpleXyoGatewayRunner | undefined
 
-export const getGateway = async (mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc') => {
+export const getGateway = async (mnemonic?: string, rpcEndpoint?: string) => {
   // If existing gateway, return it
   if (isDefined(gateway)) return gateway
 
+  // Get the signer account
   const account = await getSignerAccount(mnemonic)
-  console.log('Using account:', account.address)
 
   // Build the signer
   const signer = await buildSimpleXyoSigner({ account })
