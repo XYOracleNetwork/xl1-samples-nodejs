@@ -27,8 +27,8 @@
   "dependencies": {
     "@xylabs/assert": "5.0.61",
     "@xylabs/delay": "5.0.61",
-    "@xylabs/typeof": "5.0.61",
     "@xylabs/tsconfig": "7.2.32",
+    "@xylabs/typeof": "5.0.61",
     "@xyo-network/payload-builder": "5.2.24",
     "@xyo-network/wallet": "5.2.24",
     "@xyo-network/xl1-sdk": "~1.18.2",
