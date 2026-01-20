@@ -2,14 +2,18 @@ import { type ChildProcess, spawn } from 'node:child_process'
 
 import { HDWallet } from '@xyo-network/wallet'
 import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
-import {
-  ADDRESS_INDEX, generateXyoBaseWalletFromPhrase, XyoViewerMoniker,
-} from '@xyo-network/xl1-protocol-sdk'
+import { XyoViewerMoniker } from '@xyo-network/xl1-protocol-sdk'
+import { config } from 'dotenv'
 
 import { getLocator } from './getLocator.ts'
+import { getSignerAccount } from './getSignerAccount.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
+// Load environment variables from .env file
+config({ quiet: true })
+
+// Parse the relevant ENV VARs or use defaults
 const mnemonic = process.env.XYO_WALLET_MNEMONIC ?? HDWallet.generateMnemonic()
 const rpcUrl = process.env.XYO_CHAIN_RPC_URL ?? 'http://localhost:8080/rpc'
 
@@ -50,12 +54,10 @@ async function startXl1(): Promise<string> {
   })
 
   try {
-    // log out the mnemonic and wallet address using same steps as producer
-    const wallet = await generateXyoBaseWalletFromPhrase(mnemonic)
-    const account = await wallet.derivePath(ADDRESS_INDEX.XYO)
-
-    console.log('Generated mnemonic:', mnemonic)
-    console.log('Producer Wallet address:', account.address)
+    // Log out the mnemonic and signer address in case random was generated
+    const account = await getSignerAccount(mnemonic)
+    console.log('Using signer mnemonic:', mnemonic)
+    console.log('Using producer address:', account.address)
 
     // Spawn the XL1 process
     xl1Process = spawn('node', ['./node_modules/@xyo-network/xl1-cli/scripts/xl1.mjs', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
