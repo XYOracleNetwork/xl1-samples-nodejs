@@ -12,6 +12,7 @@ import { getLocator } from './getLocator.ts'
 let gateway: SimpleXyoGatewayRunner | undefined
 
 export const getGateway = async (mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc') => {
+  // If existing gateway, return it
   if (isDefined(gateway)) return gateway
 
   // Load the account to use for the transaction
