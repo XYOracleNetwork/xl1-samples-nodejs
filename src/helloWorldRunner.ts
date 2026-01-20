@@ -1,11 +1,12 @@
 import { type ChildProcess, spawn } from 'node:child_process'
 
-import { HDWallet } from '@xyo-network/wallet'
 import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
 import { XyoViewerMoniker } from '@xyo-network/xl1-protocol-sdk'
 import { config } from 'dotenv'
 
 import { getLocator } from './getLocator.ts'
+import { getMnemonic } from './getMnemonic.ts'
+import { getRpcUrl } from './getRpcUrl.ts'
 import { getSignerAccount } from './getSignerAccount.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
@@ -14,8 +15,8 @@ import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 config({ quiet: true })
 
 // Parse the relevant ENV VARs or use defaults
-const mnemonic = process.env.XYO_WALLET_MNEMONIC ?? HDWallet.generateMnemonic()
-const rpcUrl = process.env.XYO_CHAIN_RPC_URL ?? 'http://localhost:8080/rpc'
+const mnemonic = getMnemonic()
+const rpcUrl = getRpcUrl()
 
 /**
  * Starts the XL1 node using command in a child process

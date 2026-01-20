@@ -1,12 +1,8 @@
 import { isError } from '@xylabs/typeof'
 import type { SignedHydratedTransaction } from '@xyo-network/xl1-protocol'
-import { config } from 'dotenv'
 
 import { getGateway } from './getGateway.ts'
 import { getRandomTransactionData } from './getRandomTransactionData.ts'
-
-// Load environment variables from .env file
-config({ quiet: true })
 
 // Log to console
 const logger = console
