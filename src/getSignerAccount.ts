@@ -1,5 +1,9 @@
 import { assertEx } from '@xylabs/assert'
+import { isDefined } from '@xylabs/typeof'
+import type { AccountInstance } from '@xyo-network/account-model'
 import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1-sdk'
+
+let signerAccount: AccountInstance | undefined
 
 /**
  * Retrieves the signer account derived from the provided mnemonic or environment variable.
@@ -8,14 +12,16 @@ import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1
  * @returns The derived account
  */
 export const getSignerAccount = async (walletMnemonic?: string) => {
-  // Determine the account to use for the transaction
+  // If existing signer account, return it
+  if (isDefined (signerAccount)) return signerAccount
+
+  // Determine the mnemonic for the wallet to use for transactions
   const mnemonic = assertEx(
     walletMnemonic ?? process.env.XYO_WALLET_MNEMONIC,
     () => 'Wallet mnemonic must be supplied from either XYO_WALLET_MNEMONIC ENV VAR or argument',
   )
   const wallet = await generateXyoBaseWalletFromPhrase(mnemonic)
-  const account = await wallet.derivePath(ADDRESS_INDEX.XYO)
-  console.log('Using account:', account.address)
-
-  return account
+  signerAccount = await wallet.derivePath(ADDRESS_INDEX.XYO)
+  console.log('Using signer account:', signerAccount.address)
+  return signerAccount
 }
