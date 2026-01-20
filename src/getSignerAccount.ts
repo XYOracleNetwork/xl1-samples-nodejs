@@ -5,7 +5,7 @@ import { ADDRESS_INDEX, generateXyoBaseWalletFromPhrase } from '@xyo-network/xl1
 let signerAccount: AccountInstance | undefined
 
 /**
- * Retrieves the signer account derived from the provided mnemonic or environment variable.
+ * Retrieves the signer account derived from the provided mnemonic.
  * @param walletMnemonic The mnemonic to use for deriving the account.
  * @returns The derived account
  */
