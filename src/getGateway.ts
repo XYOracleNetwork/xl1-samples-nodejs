@@ -8,12 +8,12 @@ import { getLocator } from './getLocator.ts'
 
 let gateway: SimpleXyoGatewayRunner | undefined
 
-export const getGateway = async (walletMnemonic?: string, rpcEndpoint?: string) => {
+export const getGateway = async (walletMnemonic: string, rpcUrl: string) => {
   // If existing gateway, return it
   if (isDefined(gateway)) return gateway
 
   // Get the provider locator
-  const locator = await getLocator(walletMnemonic, rpcEndpoint)
+  const locator = await getLocator(walletMnemonic, rpcUrl)
 
   // Use locator to get connection and signer
   const connection = await locator.getInstance<XyoConnection>(XyoConnectionMoniker)

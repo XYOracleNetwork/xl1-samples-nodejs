@@ -5,9 +5,8 @@ import { HttpRpcTransport } from '@xyo-network/xl1-sdk'
 let transportFactory: TransportFactory | undefined
 
 // Determine the RPC endpoint to use for the chain connection
-const DefaultRpcEndpoint = process.env.XYO_CHAIN_RPC_URL ?? 'http://localhost:8080/rpc'
 
-export const getTransportFactory = (rpcUrl = DefaultRpcEndpoint) => {
+export const getTransportFactory = (rpcUrl: string) => {
   // If existing locator, return it
   if (isDefined(transportFactory)) return transportFactory
 

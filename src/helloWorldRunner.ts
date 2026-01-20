@@ -10,6 +10,9 @@ import { getLocator } from './getLocator.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
+const mnemonic = process.env.XYO_WALLET_MNEMONIC ?? HDWallet.generateMnemonic()
+const rpcUrl = process.env.XYO_CHAIN_RPC_URL ?? 'http://localhost:8080/rpc'
+
 /**
  * Starts the XL1 node using command in a child process
  * The child process will be terminated when the parent process exits
@@ -17,8 +20,6 @@ import { waitForInitialBlocks } from './waitForInitialBlocks.js'
  */
 async function startXl1(): Promise<string> {
   console.log('Starting XL1...')
-
-  const mnemonic = process.env.XYO_WALLET_MNEMONIC ?? HDWallet.generateMnemonic()
 
   // Track the child process
   let xl1Process: ChildProcess | null = null
@@ -88,7 +89,7 @@ async function startXl1(): Promise<string> {
     })
 
     // Get the XyoViewer instance
-    const locator = await getLocator()
+    const locator = await getLocator(mnemonic, rpcUrl)
     const viewer = await locator.getInstance<XyoViewer>(XyoViewerMoniker)
 
     // Wait for the initial blocks to be created
@@ -101,10 +102,8 @@ async function startXl1(): Promise<string> {
   }
 }
 
-let mnemonic: string
-
 try {
-  mnemonic = await startXl1()
+  await startXl1()
 } catch (ex) {
   console.error('Failed to start XL1:', ex)
   // eslint-disable-next-line unicorn/no-process-exit
@@ -114,7 +113,7 @@ try {
 console.log('XL1 is ready, starting sample...')
 
 try {
-  await helloWorld(mnemonic)
+  await helloWorld(mnemonic, rpcUrl)
 } catch (error) {
   console.error('Error importing application:', error)
 }

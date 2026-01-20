@@ -11,14 +11,14 @@ config({ quiet: true })
 
 const logger = console
 
-export async function helloWorld(mnemonic?: string): Promise<void> {
+export async function helloWorld(mnemonic: string, rpcUrl: string): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
     // Generate random data to send in the transaction
     const { onChainData, offChainData } = await getRandomTransactionData()
 
-    const gateway = await getGateway(mnemonic)
+    const gateway = await getGateway(mnemonic, rpcUrl)
 
     // Send the transaction to the network
     const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)

@@ -7,7 +7,7 @@ import { getTransportFactory } from './getTransportFactory.ts'
 
 let locator: ProviderFactoryLocator
 
-export const getLocator = async (walletMnemonic?: string, rpcUrl?: string) => {
+export const getLocator = async (walletMnemonic: string, rpcUrl: string) => {
   // If existing locator, return it
   if (isDefined(locator)) return locator
 
