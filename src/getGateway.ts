@@ -1,31 +1,25 @@
 import { isDefined } from '@xylabs/typeof'
-import type { XyoConnection } from '@xyo-network/xl1-sdk'
+import type { SimpleXyoSigner, XyoConnection } from '@xyo-network/xl1-sdk'
 import {
-  buildSimpleXyoSigner, SimpleXyoGatewayRunner, XyoConnectionMoniker,
+  SimpleXyoGatewayRunner, XyoConnectionMoniker, XyoSignerMoniker,
 } from '@xyo-network/xl1-sdk'
 
 import { getLocator } from './getLocator.ts'
-import { getSignerAccount } from './getSignerAccount.ts'
 
 let gateway: SimpleXyoGatewayRunner | undefined
 
-export const getGateway = async (mnemonic?: string, rpcEndpoint?: string) => {
+export const getGateway = async (walletMnemonic?: string, rpcEndpoint?: string) => {
   // If existing gateway, return it
   if (isDefined(gateway)) return gateway
 
-  // Get the signer account
-  const account = await getSignerAccount(mnemonic)
-
-  // Build the signer
-  const signer = await buildSimpleXyoSigner({ account })
-
   // Get the provider locator
-  const locator = await getLocator(rpcEndpoint)
+  const locator = await getLocator(walletMnemonic, rpcEndpoint)
 
-  // Get the XyoConnection instance
+  // Use locator to get connection and signer
   const connection = await locator.getInstance<XyoConnection>(XyoConnectionMoniker)
+  const signer = await locator.getInstance<SimpleXyoSigner>(XyoSignerMoniker)
 
-  // Return a new SimpleXyoGatewayRunner instance
+  // Create gateway from connection and signer
   gateway = new SimpleXyoGatewayRunner(connection, signer)
   return gateway
 }
