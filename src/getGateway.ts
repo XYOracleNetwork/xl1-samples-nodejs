@@ -1,28 +1,27 @@
-import { assertEx } from '@xylabs/assert'
-import type { XyoConnection } from '@xyo-network/xl1-sdk'
+import { isDefined } from '@xylabs/typeof'
+import type { SimpleXyoSigner, XyoConnection } from '@xyo-network/xl1-sdk'
 import {
-  ADDRESS_INDEX,
-  buildSimpleXyoSigner, generateXyoBaseWalletFromPhrase,
-  SimpleXyoGatewayRunner, XyoConnectionMoniker,
+  SimpleXyoGatewayRunner, XyoConnectionMoniker, XyoSignerMoniker,
 } from '@xyo-network/xl1-sdk'
 
 import { getLocator } from './getLocator.ts'
 
-export const getGateway = async (mnemonic?: string, rpcEndpoint = 'http://localhost:8080/rpc') => {
-  // Load the account to use for the transaction
-  const walletMnemonic = assertEx(process.env.XYO_WALLET_MNEMONIC ?? mnemonic, () => 'Unable to resolve mnemonic from environment variable or argument')
-  const account = await (await generateXyoBaseWalletFromPhrase(walletMnemonic)).derivePath(ADDRESS_INDEX.XYO)
-  console.log('Using account:', account.address)
+let gateway: SimpleXyoGatewayRunner | undefined
 
-  // Build the signer
-  const signer = await buildSimpleXyoSigner({ account })
+export const getGateway = async () => {
+  // If existing gateway, return it
+  if (isDefined(gateway)) return gateway
 
-  // Get the provider locator
-  const locator = await getLocator(rpcEndpoint)
+  // Otherwise, build a new gateway
 
-  // Get the XyoConnection instance
+  // Get locator
+  const locator = await getLocator()
+
+  // Use locator to get connection and signer
   const connection = await locator.getInstance<XyoConnection>(XyoConnectionMoniker)
+  const signer = await locator.getInstance<SimpleXyoSigner>(XyoSignerMoniker)
 
-  // Return a new SimpleXyoGatewayRunner instance
-  return new SimpleXyoGatewayRunner(connection, signer)
+  // Create gateway from connection and signer
+  gateway = new SimpleXyoGatewayRunner(connection, signer)
+  return gateway
 }

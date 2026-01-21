@@ -1,18 +1,24 @@
 import { isDefined } from '@xylabs/typeof'
-import type {
-  ProviderFactoryLocator, RpcSchemaMap, TransportFactory,
-} from '@xyo-network/xl1-sdk'
-import { buildJsonRpcProviderLocator, HttpRpcTransport } from '@xyo-network/xl1-sdk'
+import type { ProviderFactoryLocator } from '@xyo-network/xl1-sdk'
+import { buildJsonRpcProviderLocator, SimpleXyoSigner } from '@xyo-network/xl1-sdk'
+
+import { getSignerAccount } from './getSignerAccount.ts'
+import { getTransportFactory } from './getTransportFactory.ts'
 
 let locator: ProviderFactoryLocator
 
-export const getLocator = async (rpcEndpoint = 'http://localhost:8080/rpc') => {
+export const getLocator = async () => {
+  // If existing locator, return it
   if (isDefined(locator)) return locator
-  // Determine the RPC endpoint to use for the chain connection
-  const endpoint = process.env.XYO_CHAIN_RPC_URL ?? rpcEndpoint
-  console.log('Using endpoint:', endpoint)
 
-  const transportFactory: TransportFactory = (schemas: RpcSchemaMap) => new HttpRpcTransport(endpoint, schemas)
+  // Build a new locator
+  const transportFactory = getTransportFactory()
   locator = await buildJsonRpcProviderLocator({ transportFactory })
+
+  // Register the signer with the locator
+  const account = await getSignerAccount()
+  locator.register(SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account }))
+
+  // Return the locator
   return locator
 }
