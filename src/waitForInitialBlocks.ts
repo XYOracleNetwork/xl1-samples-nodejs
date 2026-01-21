@@ -1,12 +1,10 @@
 import { assertEx } from '@xylabs/assert'
 import { delay } from '@xylabs/delay'
 import { isDefined } from '@xylabs/typeof'
-import { HttpRpcXyoConnection } from '@xyo-network/xl1-rpc'
+import type { XyoViewer } from '@xyo-network/xl1-sdk'
 
-export const waitForInitialBlocks = async (maxAttempts = 10): Promise<void> => {
-  const connection = new HttpRpcXyoConnection({ endpoint: 'http://localhost:8080/rpc' })
-  const viewer = assertEx(connection.viewer, () => 'Connection viewer is undefined')
-
+export const waitForInitialBlocks = async (viewer: XyoViewer, maxAttempts = 10): Promise<void> => {
+  assertEx(viewer, () => 'Connection viewer is undefined')
   console.log('\n⏳ Waiting for genesis block creation...')
   let attempts = 0
   while (attempts < maxAttempts) {
