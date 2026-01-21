@@ -9,10 +9,8 @@ const logger = console
 
 /**
  * Runs a simple "Hello World" transaction on the XL1 network.
- * @param mnemonic The mnemonic to use for signing transactions
- * @param rpcUrl The RPC URL to connect to the XL1 network
  */
-export async function helloWorld(mnemonic: string, rpcUrl: string): Promise<void> {
+export async function helloWorld(): Promise<void> {
   try {
     console.log('\n**** Starting XL1 Hello World NodeJs Sample ****\n')
 
@@ -20,7 +18,7 @@ export async function helloWorld(mnemonic: string, rpcUrl: string): Promise<void
     const { onChainData, offChainData } = await getRandomTransactionData()
 
     // Get gateway to interact with the chain
-    const gateway = await getGateway(mnemonic, rpcUrl)
+    const gateway = await getGateway()
 
     // Send the transaction to the network
     const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)

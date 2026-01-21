@@ -7,16 +7,16 @@ import { getTransportFactory } from './getTransportFactory.ts'
 
 let locator: ProviderFactoryLocator
 
-export const getLocator = async (walletMnemonic: string, rpcUrl: string) => {
+export const getLocator = async () => {
   // If existing locator, return it
   if (isDefined(locator)) return locator
 
   // Build a new locator
-  const transportFactory = getTransportFactory(rpcUrl)
+  const transportFactory = getTransportFactory()
   locator = await buildJsonRpcProviderLocator({ transportFactory })
 
   // Register the signer with the locator
-  const account = await getSignerAccount(walletMnemonic)
+  const account = await getSignerAccount()
   locator.register(SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account }))
 
   // Return the locator

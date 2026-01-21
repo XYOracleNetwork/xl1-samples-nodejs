@@ -4,15 +4,13 @@ import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
 import { XyoViewerMoniker } from '@xyo-network/xl1-protocol-sdk'
 
 import { getLocator } from './getLocator.ts'
-import { getMnemonic } from './getMnemonic.ts'
-import { getRpcUrl } from './getRpcUrl.ts'
 import { getSignerAccount } from './getSignerAccount.ts'
+import { getWalletMnemonic } from './getWalletMnemonic.ts'
 import { helloWorld } from './helloWorld.js'
 import { waitForInitialBlocks } from './waitForInitialBlocks.js'
 
 // Parse the relevant ENV VARs or use defaults
-const mnemonic = getMnemonic()
-const rpcUrl = getRpcUrl()
+const mnemonic = getWalletMnemonic()
 
 /**
  * Starts the XL1 node using command in a child process
@@ -52,7 +50,7 @@ async function startXl1(): Promise<string> {
 
   try {
     // Log out the mnemonic and signer address in case random was generated
-    const account = await getSignerAccount(mnemonic)
+    const account = await getSignerAccount()
     console.log('Using signer mnemonic:', mnemonic)
     console.log('Using producer address:', account.address)
 
@@ -88,7 +86,7 @@ async function startXl1(): Promise<string> {
     })
 
     // Get the XyoViewer instance
-    const locator = await getLocator(mnemonic, rpcUrl)
+    const locator = await getLocator()
     const viewer = await locator.getInstance<XyoViewer>(XyoViewerMoniker)
 
     // Wait for the initial blocks to be created
@@ -112,7 +110,7 @@ try {
 console.log('XL1 is ready, starting sample...')
 
 try {
-  await helloWorld(mnemonic, rpcUrl)
+  await helloWorld()
 } catch (error) {
   console.error('Error importing application:', error)
 }
