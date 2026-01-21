@@ -7,8 +7,8 @@ import { getRpcUrl } from './getRpcUrl.ts'
 let transportFactory: TransportFactory | undefined
 
 /**
- * Retrieves a transport factory for the given RPC URL.
- * @returns A transport factory for the given RPC URL
+ * Retrieves a transport factory for the configured RPC URL.
+ * @returns A transport factory for the configured RPC URL
  */
 export const getTransportFactory = () => {
   // If existing transport factory, return it

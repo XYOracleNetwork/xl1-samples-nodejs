@@ -7,7 +7,7 @@ import { getWalletMnemonic } from './getWalletMnemonic.ts'
 let signerAccount: AccountInstance | undefined
 
 /**
- * Retrieves the signer account derived from the provided mnemonic.
+ * Retrieves the signer account derived from the configured mnemonic.
  * @returns The derived account
  */
 export const getSignerAccount = async () => {

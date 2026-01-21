@@ -8,7 +8,7 @@ config({ quiet: true })
 const mnemonic = process.env.XYO_WALLET_MNEMONIC ?? HDWallet.generateMnemonic()
 
 /**
- * Gets the mnemonic to use for the signer
- * @returns The mnemonic to use for the signer
+ * Gets the mnemonic to use for the wallet
+ * @returns The mnemonic to use for the wallet
  */
 export const getWalletMnemonic = (): string => mnemonic
