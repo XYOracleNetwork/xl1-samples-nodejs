@@ -1,6 +1,6 @@
 import { PayloadBuilder } from '@xyo-network/payload-builder'
-import type { Payload } from '@xyo-network/payload-model'
-import type { HashPayload } from '@xyo-network/xl1-sdk'
+import { asSchema, type Payload } from '@xyo-network/payload-model'
+import { type HashPayload, HashSchema } from '@xyo-network/xl1-sdk'
 
 /**
  * Generates random data for a transaction.
@@ -9,11 +9,11 @@ import type { HashPayload } from '@xyo-network/xl1-sdk'
 export const getRandomTransactionData = async () => {
   // Data to store off-chain
   const salt = `Hello from Sample - ${new Date().toISOString()}`
-  const idPayload: Payload<{ salt: string }> = { schema: 'network.xyo.id', salt }
+  const idPayload: Payload<{ salt: string }> = { schema: asSchema('network.xyo.id', true), salt }
 
   // Data to store on-chain (can reference the off-chain data)
   const hash = await PayloadBuilder.hash(idPayload)
-  const hashPayload: HashPayload = { schema: 'network.xyo.hash', hash }
+  const hashPayload: HashPayload = { schema: HashSchema, hash }
 
   return {
     offChainData: [idPayload],
