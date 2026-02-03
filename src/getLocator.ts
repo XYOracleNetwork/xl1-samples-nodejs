@@ -1,6 +1,8 @@
 import { isDefined } from '@xylabs/typeof'
 import type { ProviderFactoryLocator } from '@xyo-network/xl1-sdk'
-import { buildJsonRpcProviderLocator, SimpleXyoSigner } from '@xyo-network/xl1-sdk'
+import {
+  buildJsonRpcProviderLocator, SimpleXyoGatewayRunner, SimpleXyoSigner,
+} from '@xyo-network/xl1-sdk'
 
 import { getSignerAccount } from './getSignerAccount.ts'
 import { getTransportFactory } from './getTransportFactory.ts'
@@ -18,6 +20,7 @@ export const getLocator = async () => {
   // Register the signer with the locator
   const account = await getSignerAccount()
   locator.register(SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account }))
+  locator.register(SimpleXyoGatewayRunner.factory<SimpleXyoGatewayRunner>(SimpleXyoGatewayRunner.dependencies))
 
   // Return the locator
   return locator
