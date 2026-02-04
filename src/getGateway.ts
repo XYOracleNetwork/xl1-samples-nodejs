@@ -1,8 +1,5 @@
 import { isDefined } from '@xylabs/typeof'
-import type { SimpleXyoSigner, XyoConnection } from '@xyo-network/xl1-sdk'
-import {
-  SimpleXyoGatewayRunner, XyoConnectionMoniker, XyoSignerMoniker,
-} from '@xyo-network/xl1-sdk'
+import { SimpleXyoGatewayRunner } from '@xyo-network/xl1-sdk'
 
 import { getLocator } from './getLocator.ts'
 
@@ -17,11 +14,7 @@ export const getGateway = async () => {
   // Get locator
   const locator = await getLocator()
 
-  // Use locator to get connection and signer
-  const connection = await locator.getInstance<XyoConnection>(XyoConnectionMoniker)
-  const signer = await locator.getInstance<SimpleXyoSigner>(XyoSignerMoniker)
-
   // Create gateway from connection and signer
-  gateway = new SimpleXyoGatewayRunner(connection, signer)
+  gateway = await locator.getInstance<SimpleXyoGatewayRunner>(SimpleXyoGatewayRunner.defaultMoniker)
   return gateway
 }
