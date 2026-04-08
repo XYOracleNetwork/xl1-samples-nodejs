@@ -1,7 +1,7 @@
 import { type ChildProcess, spawn } from 'node:child_process'
 
-import type { XyoViewer } from '@xyo-network/xl1-protocol-sdk'
-import { XyoViewerMoniker } from '@xyo-network/xl1-protocol-sdk'
+import type { XyoViewer } from '@xyo-network/xl1-sdk'
+import { XyoViewerMoniker } from '@xyo-network/xl1-sdk'
 
 import { getLocator } from './getLocator.ts'
 import { getSignerAccount } from './getSignerAccount.ts'

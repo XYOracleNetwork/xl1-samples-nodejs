@@ -12,23 +12,18 @@ import {
 export default [
   { ignores: ['.yarn', '**/dist', '**/build', 'scripts', 'node_modules', '*.cjs', '*.mjs'] },
   { files: ['**/*.ts'] },
-  unicornConfig,
-  workspacesConfig,
-  rulesConfig,
-  typescriptConfig,
-  sonarConfig,
   {
-    ...importConfig,
+    ...unicornConfig,
     rules: {
-      ...importConfig.rules,
-      'import-x/no-internal-modules': ['warn', { allow: ['*/index.ts'] }],
-      'import-x/no-unresolved': ['off'],
-      'import-x/no-relative-packages': ['error'],
-      'import-x/no-self-import': ['error'],
-      'import-x/no-useless-path-segments': ['warn'],
-      'sonarjs/prefer-single-boolean-return': ['off'],
+      ...unicornConfig.rules,
+      'unicorn/text-encoding-identifier-case': ['off'],
     },
   },
+  workspacesConfig,
+  rulesConfig,
+  ...typescriptConfig,
+  sonarConfig,
+  ...importConfig,
   {
     rules: {
       '@typescript-eslint/no-unused-vars': [
