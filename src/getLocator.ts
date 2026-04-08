@@ -19,8 +19,9 @@ export const getLocator = async () => {
 
   // Register the signer with the locator
   const account = await getSignerAccount()
-  locator.register(SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account }))
-  locator.register(SimpleXyoGatewayRunner.factory<SimpleXyoGatewayRunner>(SimpleXyoGatewayRunner.dependencies))
+  const signer = SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account })
+  locator.register(signer)
+  locator.register(SimpleXyoGatewayRunner.factory<SimpleXyoGatewayRunner>(SimpleXyoGatewayRunner.dependencies, {}))
 
   // Return the locator
   return locator
