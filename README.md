@@ -8,7 +8,7 @@ XYO Layer One Protocol Sample Code [Node]
 
 ## Prerequisites
 
-1. Nodejs version 22
+1. Nodejs version 24
 
 ## Getting Started
 
