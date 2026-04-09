@@ -14,7 +14,10 @@ export const waitForInitialBlocks = async (viewer: XyoViewer, maxAttempts = 10):
       if (isDefined(block?.block) && block.block > 0) {
         return // Success
       }
-    } catch {}
+    } catch (e) {
+      // Ignore errors and retry
+      console.error(`Error fetching current block: ${(e as Error).message}`)
+    }
     console.log(`🔁 XL1 not ready yet, retrying in 1 second... (${attempts}/${maxAttempts})`)
     await delay(1000)
   }
