@@ -1,27 +1,33 @@
 import { isDefined } from '@xylabs/typeof'
-import type { ProviderFactoryLocator } from '@xyo-network/xl1-sdk'
+import type {
+  CreatableProviderContextType, ProviderFactoryLocatorInstance, RemoteConfig,
+} from '@xyo-network/xl1-sdk'
 import {
-  buildJsonRpcProviderLocator, SimpleXyoGatewayRunner, SimpleXyoSigner,
+  basicRemoteRunnerLocator,
+  SimpleXyoSigner,
 } from '@xyo-network/xl1-sdk'
 
 import { getSignerAccount } from './getSignerAccount.ts'
-import { getTransportFactory } from './getTransportFactory.ts'
 
-let locator: ProviderFactoryLocator
+let locator: ProviderFactoryLocatorInstance<CreatableProviderContextType>
 
 export const getLocator = async () => {
   // If existing locator, return it
   if (isDefined(locator)) return locator
 
-  // Build a new locator
-  const transportFactory = getTransportFactory()
-  locator = await buildJsonRpcProviderLocator({ transportFactory })
-
   // Register the signer with the locator
   const account = await getSignerAccount()
-  const signer = SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account })
-  locator.register(signer)
-  locator.register(SimpleXyoGatewayRunner.factory<SimpleXyoGatewayRunner>(SimpleXyoGatewayRunner.dependencies, {}))
+  const signerFactory = SimpleXyoSigner.factory<SimpleXyoSigner>(SimpleXyoSigner.dependencies, { account })
+
+  // Build a new locator
+  const remoteConfig: RemoteConfig = {
+    rpc: {
+      protocol: 'http',
+      url: 'http://localhost:8080/rpc',
+    },
+  }
+
+  locator = await basicRemoteRunnerLocator('node-js-sample', remoteConfig, undefined as never, undefined, { signerFactory })
 
   // Return the locator
   return locator
