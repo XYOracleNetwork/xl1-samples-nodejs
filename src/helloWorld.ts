@@ -1,5 +1,5 @@
 import { isError } from '@xylabs/typeof'
-import type { SignedHydratedTransaction } from '@xyo-network/xl1-protocol'
+import type { SignedHydratedTransaction } from '@xyo-network/xl1-sdk'
 
 import { getGateway } from './getGateway.ts'
 import { getRandomTransactionData } from './getRandomTransactionData.ts'
