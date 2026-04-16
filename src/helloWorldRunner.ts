@@ -55,10 +55,21 @@ async function startXl1(): Promise<string> {
     console.log('Using producer address:', account.address)
 
     // Spawn the XL1 process
-    xl1Process = spawn('node', ['./node_modules/@xyo-network/xl1-cli/scripts/xl1.mjs', '--logLevel="warn"', '--producer.mnemonic', JSON.stringify(mnemonic)], {
-      stdio: ['ignore', 'pipe', 'pipe'],
-      shell: true,
-    })
+    xl1Process = spawn(
+      'node',
+      [
+        './node_modules/@xyo-network/xl1-cli/scripts/xl1.mjs',
+        'start',
+        'api',
+        'producer',
+        'validator',
+        '--logLevel="warn"',
+      ],
+      {
+        stdio: ['ignore', 'pipe', 'pipe'],
+        shell: true,
+      },
+    )
 
     // Forward stdout to console
     xl1Process.stdout?.on('data', (data) => {

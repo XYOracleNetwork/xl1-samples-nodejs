@@ -24,7 +24,7 @@ export async function helloWorld(): Promise<void> {
     const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)
 
     // Wait for confirmation the transaction was included in the chain
-    const confirmed = await gateway.confirmSubmittedTransaction(txHash, { logger })
+    const confirmed = await gateway.confirmSubmittedTransaction(txHash, { logger, attempts: 60 })
     logSuccess(confirmed)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
