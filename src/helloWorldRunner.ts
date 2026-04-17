@@ -60,8 +60,6 @@ async function startXl1(): Promise<string> {
       [
         './node_modules/@xyo-network/xl1-cli/scripts/xl1.mjs',
         'start',
-        '-c',
-        './xl1.config.json',
         '--logLevel="warn"',
       ],
       {
