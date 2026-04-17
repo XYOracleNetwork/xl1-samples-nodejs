@@ -1,0 +1,9 @@
+{
+  "xl1": {
+    "actors": [
+      { "name": "api", "host": "localhost", "port": 8080 },
+      { "name": "producer" },
+      { "name": "validator", "minCandidates": 1 }
+    ]
+  }
+}
