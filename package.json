@@ -32,6 +32,7 @@
     "@xylabs/typeof": "~5.0.100",
     "@xyo-network/payload-builder": "~5.5.1",
     "@xyo-network/xl1-sdk": "~1.26.37",
+    "async-mutex": "^0.5.0",
     "axios": "^1.15.2",
     "bn.js": "^5.2.3",
     "dotenv": "~17.4.2",
