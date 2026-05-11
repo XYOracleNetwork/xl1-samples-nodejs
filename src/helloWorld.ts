@@ -3,6 +3,8 @@ import type { SignedHydratedTransaction } from '@xyo-network/xl1-sdk'
 
 import { getGateway } from './getGateway.ts'
 import { getRandomTransactionData } from './getRandomTransactionData.ts'
+import { getSignerAccount } from './getSignerAccount.ts'
+import { captureBalances, verifyTransferBalances } from './verifyTransferBalances.ts'
 
 // Log to console
 const logger = console
@@ -20,12 +22,25 @@ export async function helloWorld(): Promise<void> {
     // Get gateway to interact with the chain
     const gateway = await getGateway()
 
+    // Determine source (fee payer) and destination (fee recipient).
+    // In this single-node localhost sample the signer is also the block producer,
+    // so source == destination. A multi-node deployment would use the producer's address here.
+    const sourceAddress = (await getSignerAccount()).address
+    const destinationAddress = sourceAddress
+
+    // Capture balances before the transaction
+    const before = await captureBalances(gateway, sourceAddress, destinationAddress)
+
     // Send the transaction to the network
     const [txHash] = await gateway.addPayloadsToChain(onChainData, offChainData)
 
     // Wait for confirmation the transaction was included in the chain
     const confirmed = await gateway.confirmSubmittedTransaction(txHash, { logger, attempts: 60 })
     logSuccess(confirmed)
+
+    // Capture balances after the transaction and verify they reflect the transfer
+    const after = await captureBalances(gateway, sourceAddress, destinationAddress)
+    verifyTransferBalances(sourceAddress, destinationAddress, before, after)
   } catch (ex) {
     console.error('An error occurred:', isError(ex) ? ex.message : String(ex))
     process.exitCode = 1
