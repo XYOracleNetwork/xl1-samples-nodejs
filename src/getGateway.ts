@@ -1,4 +1,4 @@
-import { isDefined } from '@xylabs/typeof'
+import { isDefined } from '@ariestools/sdk'
 import { SimpleXyoGatewayRunner } from '@xyo-network/xl1-sdk'
 
 import { getLocator } from './getLocator.ts'

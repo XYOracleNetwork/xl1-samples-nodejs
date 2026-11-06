@@ -1,4 +1,4 @@
-import { isDefined } from '@xylabs/typeof'
+import { isDefined } from '@ariestools/sdk'
 import type {
   CreatableProviderContextType, ProviderFactoryLocatorInstance, RemoteConfig,
 } from '@xyo-network/xl1-sdk'

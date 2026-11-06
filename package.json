@@ -27,27 +27,25 @@
   "dependencies": {
     "@xylabs/sdk-js": "~5.0.102",
     "async-mutex": "^0.5.0",
-    "axios": "^1.16.0",
     "bn.js": "^5.2.3",
     "pako": "^2.1.0",
     "zod": "~4.4.3"
   },
   "devDependencies": {
     "@bitauth/libauth": "~3.0.0",
-    "@metamask/json-rpc-engine": "^10.3.0",
+    "@ariestools/json-rpc-engine": "~8.1.4",
     "@metamask/providers": "^22",
     "@metamask/utils": "^11.11.0",
     "@opentelemetry/api": "^1",
     "@opentelemetry/sdk-trace-base": "^2",
     "@scure/base": "~2.2.0",
     "@scure/bip39": "~2.2.0",
-    "@xylabs/assert": "~5.0.102",
+    "@ariestools/sdk": "~5.0.102",
     "@xylabs/delay": "~5.0.102",
     "@xylabs/eslint-config-flat": "~7.12.3",
     "@xylabs/geo": "~5.0.102",
     "@xylabs/threads": "~5.0.102",
     "@xylabs/tsconfig": "~7.12.3",
-    "@xylabs/typeof": "~5.0.102",
     "@xyo-network/account": "~5.5.2",
     "@xyo-network/account-model": "~5.5.2",
     "@xyo-network/api": "~5.5.2",
@@ -93,7 +91,7 @@
     "wasm-feature-detect": "^1.8.0"
   },
   "peerDependencies": {
-    "@metamask/json-rpc-engine": "^10.2.4",
+    "@ariestools/json-rpc-engine": "~8.1.4",
     "@metamask/utils": "^11.11.0",
     "@opentelemetry/api": "^1",
     "@opentelemetry/sdk-trace-base": "^2",
@@ -114,12 +112,19 @@
   "engines": {
     "node": ">=24"
   },
-  "volta": {
-    "node": "22.5.1",
-    "npm": "10.9.2",
-    "yarn": "4.12.0"
-  },
   "publishConfig": {
     "access": "restricted"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "onFail": "error",
+      "version": ">=26.0.0 <27.0.0"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "onFail": "error",
+      "version": ">=12.0.0 <13.0.0"
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { assertEx } from '@xylabs/assert'
+import { assertEx } from '@ariestools/sdk'
 import { delay } from '@xylabs/delay'
-import { isDefined } from '@xylabs/typeof'
+import { isDefined } from '@ariestools/sdk'
 import type { XyoViewer } from '@xyo-network/xl1-sdk'
 
 export const waitForInitialBlocks = async (viewer: XyoViewer, maxAttempts = 10): Promise<void> => {
